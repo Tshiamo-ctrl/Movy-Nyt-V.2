@@ -3,6 +3,7 @@ import { Box, Typography, TextField, Stack, Chip, InputAdornment, Tab, Tabs } fr
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import ContentCard from '../ui/ContentCard';
+import { ContentCardProps } from '../ui/ContentCard';
 import ContentGrid from '../ui/ContentGrid';
 
 const WatchContainer = styled(Box)(() => ({
@@ -29,7 +30,8 @@ const WatchSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [content, setContent] = useState<any[]>([]);
+  type ContentItem = Omit<ContentCardProps, 'onClick' | 'loading' | 'aspectRatio' | 'className'>;
+  const [content, setContent] = useState<ContentItem[]>([]);
 
   const tabs = ['All Content', 'Movies', 'TV Shows', 'Documentaries', 'My List'];
   const allFilters = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Horror', 'Family', 'Trending', 'New Releases'];
@@ -217,7 +219,7 @@ const WatchSection: React.FC = () => {
             variant="body2" 
             sx={{ mb: 2, px: { xs: 2, md: 0 } }}
           >
-            Showing results for "{searchQuery}"
+            Showing results for &quot;{searchQuery}&quot;
           </Typography>
         )}
 

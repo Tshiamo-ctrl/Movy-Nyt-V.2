@@ -494,7 +494,7 @@ const AsymmetricWatchPartySection: React.FC = () => {
 
   // Auto-update current time when playing
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isPlaying && sessionState === 'watching') {
       interval = setInterval(() => {
         setCurrentTime(prev => Math.min(prev + 1, duration));

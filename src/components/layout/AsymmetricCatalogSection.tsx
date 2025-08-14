@@ -414,7 +414,7 @@ const AsymmetricCatalogSection: React.FC = () => {
   const [continueWatching, setContinueWatching] = useState<ContentItem[]>([]);
   
   // Refs for auto-rotation
-  const rotationRef = useRef<NodeJS.Timeout>();
+  const rotationRef = useRef<ReturnType<typeof setInterval>>();
   
   // Scroll animations
   const { elementRef: heroRef, isInView: heroInView } = useScrollAnimation({ threshold: 0.3 });
@@ -733,7 +733,8 @@ const AsymmetricCatalogSection: React.FC = () => {
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <AccessTime sx={{ fontSize: '16px', color: 'var(--color-text-secondary)' }} />
                     <Typography variant="caption" sx={{ color: 'var(--color-text-secondary)' }}>
-                      {Math.round((100 - item.progress!) * parseInt(item.duration) / 100)} min left
+                      {/* Use &quot; for double quotes and &apos; for single quotes if needed */}
+                      {Math.round((100 - (item.progress ?? 0)) * parseInt(item.duration) / 100)} min left
                     </Typography>
                   </Stack>
                 </Box>

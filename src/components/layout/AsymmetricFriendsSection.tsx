@@ -405,7 +405,7 @@ interface ActivityItem {
   content: string;
   timestamp: string;
   importance: 'high' | 'medium' | 'low';
-  details?: any;
+  details?: Record<string, unknown>;
 }
 
 const AsymmetricFriendsSection: React.FC = () => {

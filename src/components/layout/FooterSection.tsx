@@ -134,7 +134,7 @@ const FooterSection: React.FC = () => {
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              Stay Updated
+              Join Our Newsletter
             </Typography>
             
             <Typography 
@@ -151,7 +151,7 @@ const FooterSection: React.FC = () => {
 
             {subscribed && (
               <Alert severity="success" sx={{ mb: 2, maxWidth: '400px', mx: 'auto' }}>
-                Thanks for subscribing! You'll receive the latest updates.
+                Thanks for subscribing! You&apos;ll receive the latest updates.
               </Alert>
             )}
             
