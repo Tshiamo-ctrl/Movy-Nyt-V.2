@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import WatchPartySection from '../components/layout/WatchPartySection';
+import AsymmetricWatchPartySection from '../components/layout/AsymmetricWatchPartySection';
 
 const WatchPartyPage: React.FC = () => {
   return (
     <Box sx={{ mt: -8 }}> {/* Negative margin to compensate for header */}
-      <WatchPartySection />
+      <AsymmetricWatchPartySection />
     </Box>
   );
 };

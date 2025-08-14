@@ -71,8 +71,7 @@ const Header: React.FC = () => {
     { label: 'Home', path: '/' },
     { label: 'Watch Together', path: '/watch-together' },
     { label: 'Friends', path: '/friends' },
-    { label: 'Catalog', path: '/catalog' },
-    { label: 'My Rooms', path: '/my-rooms' }
+    { label: 'Watch', path: '/watch' }
   ];
 
   const handleDrawerToggle = () => {

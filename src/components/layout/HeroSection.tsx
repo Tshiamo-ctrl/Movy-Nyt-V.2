@@ -158,9 +158,9 @@ const HeroSection: React.FC = () => {
           <GlowButton 
             variant="outline" 
             size="large"
-            onClick={() => navigate('/catalog')}
+            onClick={() => navigate('/watch')}
           >
-            Browse Catalog
+            Browse Content
           </GlowButton>
         </Stack>
       </ContentBox>

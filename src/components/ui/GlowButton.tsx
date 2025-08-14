@@ -7,7 +7,9 @@ interface GlowButtonProps extends Omit<ButtonProps, 'variant'> {
   children: ReactNode;
 }
 
-const StyledButton = styled(Button)<{ glowVariant?: 'primary' | 'secondary' | 'outline' }>(({ theme, glowVariant = 'primary' }) => {
+const StyledButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'glowVariant',
+})<{ glowVariant?: 'primary' | 'secondary' | 'outline' }>(({ theme, glowVariant = 'primary' }) => {
   const getVariantStyles = () => {
     switch (glowVariant) {
       case 'primary':

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import CatalogSection from '../components/layout/CatalogSection';
+import AsymmetricCatalogSection from '../components/layout/AsymmetricCatalogSection';
 import FooterSection from '../components/layout/FooterSection';
 
-const CatalogPage: React.FC = () => {
+const WatchPage: React.FC = () => {
   return (
     <Box>
-      <CatalogSection />
+      <AsymmetricCatalogSection />
       <FooterSection />
     </Box>
   );
 };
 
-export default CatalogPage;
+export default WatchPage;
