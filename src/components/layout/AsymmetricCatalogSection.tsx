@@ -128,6 +128,12 @@ const SearchSection = styled(Box)(() => ({
   alignItems: 'center',
   gap: 'calc(var(--grid-base) * 2)',
   animation: `${fadeInUp} 0.8s var(--ease-out-expo)`,
+  marginBottom: 'calc(var(--grid-base) * 2)', // Add spacing
+  
+  '@media (max-width: var(--breakpoint-sm))': {
+    gap: 'calc(var(--grid-base) * 1)',
+    marginBottom: 'calc(var(--grid-base) * 1.5)',
+  },
 }));
 
 const EnhancedSearchField = styled(TextField)(() => ({
@@ -301,6 +307,12 @@ const PremiumSection = styled(Box)(() => ({
   position: 'relative',
   overflow: 'hidden',
   animation: `${fadeInUp} 1s var(--ease-out-expo) 0.6s both`,
+  marginTop: 'calc(var(--grid-base) * 2)', // Add proper spacing from search
+  
+  '@media (max-width: var(--breakpoint-sm))': {
+    padding: 'calc(var(--grid-base) * 2)',
+    marginTop: 'calc(var(--grid-base) * 1.5)',
+  },
   
   '&::before': {
     content: '""',

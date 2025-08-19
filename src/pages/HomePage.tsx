@@ -21,6 +21,14 @@ const SectionDivider = styled(Box)(() => ({
   opacity: 0.3,
 }));
 
+const PageContainer = styled(Box)(() => ({
+  paddingTop: 'calc(64px + var(--grid-base) * 2)', // Header height + spacing
+  
+  '@media (max-width: var(--breakpoint-sm))': {
+    paddingTop: 'calc(56px + var(--grid-base) * 1)', // Smaller header spacing on mobile
+  },
+}));
+
 const HomePage: React.FC = () => {
   useEffect(() => {
     // Smooth scroll behavior for anchor links
@@ -58,19 +66,21 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <SmoothScrollContainer>
-      {/* Main Hero Section with Asymmetric Design */}
-      <AsymmetricHeroSection />
-      
-      {/* Subtle divider */}
-      <SectionDivider />
-      
-      {/* Enhanced Features Section */}
-      <AsymmetricFeaturesSection />
-      
-      {/* Footer */}
-      <FooterSection />
-    </SmoothScrollContainer>
+    <PageContainer>
+      <SmoothScrollContainer>
+        {/* Main Hero Section with Asymmetric Design */}
+        <AsymmetricHeroSection />
+        
+        {/* Subtle divider */}
+        <SectionDivider />
+        
+        {/* Enhanced Features Section */}
+        <AsymmetricFeaturesSection />
+        
+        {/* Footer */}
+        <FooterSection />
+      </SmoothScrollContainer>
+    </PageContainer>
   );
 };
 

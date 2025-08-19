@@ -205,10 +205,16 @@ const ConnectionsArea = styled(Box)(() => ({
 const FriendConnectionsGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-  gap: 'calc(var(--grid-base) * 2)',
+  gap: 'calc(var(--grid-base) * 3)',
+  
+  '@media (max-width: var(--breakpoint-lg))': {
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: 'calc(var(--grid-base) * 2.5)',
+  },
   
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
+    gap: 'calc(var(--grid-base) * 2)',
   },
 }));
 
@@ -226,13 +232,32 @@ const FriendCard = styled(Box, {
     borderRadius: 'calc(var(--grid-base) * 2)',
     padding: 'calc(var(--grid-base) * 3)',
     minHeight: cardHeight,
-    transform: `scale(${priorityScale})`,
-    transformOrigin: 'center top',
     cursor: 'pointer',
     transition: 'all var(--animation-medium) var(--ease-out-expo)',
     animation: `${cardReveal} 0.8s var(--ease-out-expo)`,
     position: 'relative',
     overflow: 'hidden',
+    marginBottom: 'calc(var(--grid-base) * 2)', // Prevent overlap
+    
+    // Mobile-first responsive sizing
+    '@media (max-width: var(--breakpoint-sm))': {
+      padding: 'calc(var(--grid-base) * 2)',
+      minHeight: priority >= 8 ? '240px' : priority >= 6 ? '200px' : '160px',
+      transform: 'none', // Remove scaling on mobile for better readability
+      marginBottom: 'calc(var(--grid-base) * 1.5)',
+    },
+    
+    // Tablet sizing
+    '@media (min-width: var(--breakpoint-sm)) and (max-width: var(--breakpoint-lg))': {
+      transform: `scale(${priorityScale})`,
+      transformOrigin: 'center top',
+    },
+    
+    // Desktop sizing
+    '@media (min-width: var(--breakpoint-lg))': {
+      transform: `scale(${priorityScale})`,
+      transformOrigin: 'center top',
+    },
     
     '&::before': {
       content: '""',

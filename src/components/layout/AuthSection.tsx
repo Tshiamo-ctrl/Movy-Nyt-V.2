@@ -10,7 +10,27 @@ import GlassCard from '../ui/GlassCard';
 const AuthContainer = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
   display: 'flex',
-  background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, #1a1a2e 100%)`
+  background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, #1a1a2e 100%)`,
+  position: 'relative',
+  overflow: 'hidden',
+  
+  // Add animated background elements
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(65, 105, 225, 0.1) 0%, transparent 50%)',
+    animation: 'float 6s ease-in-out infinite alternate',
+    zIndex: 1,
+  },
+  
+  '@keyframes float': {
+    '0%': { transform: 'translateY(0px) rotate(0deg)' },
+    '100%': { transform: 'translateY(-20px) rotate(2deg)' },
+  },
 }));
 
 const VisualSide = styled(Box)({
@@ -18,14 +38,35 @@ const VisualSide = styled(Box)({
   position: 'relative',
   overflow: 'hidden',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  zIndex: 2,
+  
+  // Add floating elements
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: '10%',
+    right: '10%',
+    width: '100px',
+    height: '100px',
+    background: 'radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%)',
+    borderRadius: '50%',
+    animation: 'pulse 4s ease-in-out infinite',
+  },
+  
+  '@keyframes pulse': {
+    '0%, 100%': { transform: 'scale(1)', opacity: 0.3 },
+    '50%': { transform: 'scale(1.2)', opacity: 0.6 },
+  },
 });
 
 const FormSide = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '40px 20px'
+  padding: '40px 20px',
+  position: 'relative',
+  zIndex: 2,
 });
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
