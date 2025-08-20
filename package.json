@@ -9,7 +9,7 @@
     "lint": "eslint src --ext .ts,.tsx",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
+    "start": "serve -s dist -l ${PORT:-3000}",
     "predeploy-test": "sh scripts/predeploy-test.sh"
   },
   "dependencies": {
