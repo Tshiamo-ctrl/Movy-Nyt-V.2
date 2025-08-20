@@ -23,10 +23,10 @@ const SectionDivider = styled(Box)(() => ({
 }));
 
 const PageContainer = styled(Box)(() => ({
-  paddingTop: 'calc(64px + 32px)', // Header height + 32px (max 100px total)
+  paddingTop: 'calc(64px + 10px)', // Header height + 10px (reduced from 32px)
   
   '@media (max-width: var(--breakpoint-sm))': {
-    paddingTop: 'calc(56px + 24px)', // Smaller header spacing on mobile
+    paddingTop: 'calc(56px + 8px)', // Smaller header spacing on mobile
   },
 }));
 
@@ -37,7 +37,7 @@ const QuickStatsSection = styled(Box)(() => ({
   border: 'var(--glass-border)',
   borderRadius: 'calc(var(--grid-base) * 2)',
   padding: 'calc(var(--grid-base) * 3)',
-  margin: '32px auto', // Reduced from 2 to 32px (max 50px)
+  margin: '20px auto', // Reduced from 32px to 20px for better proportions
   maxWidth: '1200px',
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -47,7 +47,7 @@ const QuickStatsSection = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
     gap: 'calc(var(--grid-base) * 1.5)',
-    margin: '24px auto', // Smaller margin on mobile
+    margin: '16px auto', // Smaller margin on mobile
   },
 }));
 
@@ -68,8 +68,8 @@ const StatItem = styled(Box)(() => ({
 
 const ContentPreviewSection = styled(Box)(() => ({
   background: 'var(--color-surface)',
-  padding: '32px 0', // Reduced from 4 to 32px (max 50px)
-  margin: '32px 0', // Reduced from 2 to 32px (max 50px)
+  padding: '20px 0', // Reduced from 32px to 20px for better proportions
+  margin: '20px 0', // Reduced from 32px to 20px for better proportions
 }));
 
 const ContentPreviewGrid = styled(Box)(() => ({

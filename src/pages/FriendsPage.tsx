@@ -6,10 +6,10 @@ import FooterSection from '../components/layout/FooterSection';
 import EnhancedMobileLayout from '../components/layout/EnhancedMobileLayout';
 
 const PageContainer = styled(Box)(() => ({
-  paddingTop: 'calc(64px + 32px)', // Header height + 32px (max 100px total)
+  paddingTop: 'calc(64px + 10px)', // Header height + 10px (reduced from 32px)
   
   '@media (max-width: var(--breakpoint-sm))': {
-    paddingTop: 'calc(56px + 24px)', // Smaller header spacing on mobile
+    paddingTop: 'calc(56px + 8px)', // Smaller header spacing on mobile
   },
 }));
 
