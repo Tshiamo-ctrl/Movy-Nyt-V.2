@@ -7,22 +7,14 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import GlowButton from '../ui/GlowButton';
 
-const FooterContainer = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, #1a1a2e 100%)`,
+const FooterContainer = styled(Box)(() => ({
+  background: 'var(--glass-background-subtle)',
+  backdropFilter: 'var(--glass-blur-subtle)',
   padding: '80px 20px 40px',
-  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
-}));
-
-const NewsletterSection = styled(Box)({
-  background: 'rgba(26, 26, 46, 0.3)',
-  backdropFilter: 'blur(20px)',
-  border: '1px solid rgba(0, 255, 255, 0.2)',
-  borderRadius: '16px',
-  padding: '40px',
-  textAlign: 'center',
-  marginBottom: '60px',
+  borderTop: 'var(--glass-border)',
   position: 'relative',
-  overflow: 'hidden',
+  
+  // Add subtle gradient overlay
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -30,48 +22,95 @@ const NewsletterSection = styled(Box)({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(65, 105, 225, 0.05) 100%)',
-    borderRadius: '16px'
+    background: 'var(--gradient-overlay-dark)',
+    opacity: 0.1,
+    pointerEvents: 'none',
+  },
+}));
+
+const NewsletterSection = styled(Box)({
+  background: 'var(--glass-background)',
+  backdropFilter: 'var(--glass-blur)',
+  border: 'var(--glass-border-strong)',
+  borderRadius: '16px',
+  padding: '40px',
+  textAlign: 'center',
+  marginBottom: '60px',
+  position: 'relative',
+  overflow: 'hidden',
+  boxShadow: 'var(--glass-shadow)',
+  transition: 'all var(--animation-medium) var(--ease-out-expo)',
+  
+  '&:hover': {
+    boxShadow: 'var(--glass-hover-shadow)',
+    border: 'var(--glass-hover-border)',
+  },
+  
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'var(--gradient-overlay-feature)',
+    borderRadius: '16px',
+    opacity: 0.3,
   }
 });
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
+const StyledTextField = styled(TextField)(() => ({
   '& .MuiOutlinedInput-root': {
-    background: 'rgba(26, 26, 46, 0.5)',
-    backdropFilter: 'blur(10px)',
+    background: 'var(--glass-background)',
+    backdropFilter: 'var(--glass-blur)',
     borderRadius: '8px',
+    border: 'var(--glass-border)',
+    transition: 'all var(--animation-medium) var(--ease-out-expo)',
+    
     '& fieldset': {
-      borderColor: 'rgba(255, 255, 255, 0.2)'
+      borderColor: 'transparent',
     },
-    '&:hover fieldset': {
-      borderColor: 'rgba(0, 255, 255, 0.5)'
+    
+    '&:hover': {
+      background: 'var(--glass-background-strong)',
+      border: 'var(--glass-hover-border)',
+      boxShadow: 'var(--glass-hover-shadow)',
     },
-    '&.Mui-focused fieldset': {
-      borderColor: theme.palette.primary.main,
-      boxShadow: `0 0 20px rgba(0, 255, 255, 0.3)`
+    
+    '&.Mui-focused': {
+      background: 'var(--glass-background-strong)',
+      border: 'var(--glass-active-border)',
+      boxShadow: 'var(--glass-active-shadow)',
     }
   },
+  
   '& .MuiInputLabel-root': {
-    color: theme.palette.text.secondary
+    color: 'var(--color-text-secondary)',
+    '&.Mui-focused': {
+      color: 'var(--color-primary)',
+    }
   },
+  
   '& .MuiOutlinedInput-input': {
-    color: theme.palette.text.primary
+    color: 'var(--color-text-primary)',
   }
 }));
 
-const SocialIcon = styled(IconButton)(({ theme }) => ({
+const SocialIcon = styled(IconButton)(() => ({
   width: '48px',
   height: '48px',
-  background: 'rgba(26, 26, 46, 0.5)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  color: theme.palette.text.primary,
-  transition: 'all 0.3s ease-in-out',
+  background: 'var(--glass-background)',
+  backdropFilter: 'var(--glass-blur)',
+  border: 'var(--glass-border)',
+  color: 'var(--color-text-primary)',
+  transition: 'all var(--animation-medium) var(--ease-out-expo)',
+  boxShadow: 'var(--glass-shadow)',
+  
   '&:hover': {
-    background: 'rgba(0, 255, 255, 0.1)',
-    border: '1px solid rgba(0, 255, 255, 0.3)',
+    background: 'var(--glass-background-strong)',
+    border: 'var(--glass-hover-border)',
     transform: 'translateY(-2px)',
-    boxShadow: '0 8px 25px rgba(0, 255, 255, 0.2)'
+    boxShadow: 'var(--glass-hover-shadow)',
   }
 }));
 
@@ -269,7 +308,7 @@ const FooterSection: React.FC = () => {
           spacing={2}
         >
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            © 2024 Movy Nyt. All rights reserved.
+            © 2025 Movy Nyt. All rights reserved.
           </Typography>
           
           <Stack direction="row" spacing={3}>

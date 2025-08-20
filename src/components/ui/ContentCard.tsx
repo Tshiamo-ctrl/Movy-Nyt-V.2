@@ -162,7 +162,10 @@ const CardContainer = styled(Box, {
       },
       '@media (max-width: var(--breakpoint-sm))': {
         gridColumn: 'span 1',
-        height: 'calc(var(--grid-compact-height) * var(--scale-factor-mobile))',
+        height: 'calc(var(--grid-standard-height) * var(--scale-factor-mobile))',
+        width: '100%',
+        maxWidth: 'none',
+        marginBottom: 'var(--mobile-card-gap)',
       },
     },
     compact: {
@@ -174,6 +177,9 @@ const CardContainer = styled(Box, {
       '@media (max-width: var(--breakpoint-sm))': {
         gridColumn: 'span 1',
         height: 'calc(var(--grid-compact-height) * var(--scale-factor-mobile))',
+        width: '100%',
+        maxWidth: 'none',
+        marginBottom: 'var(--mobile-card-gap)',
       },
     },
     wide: {

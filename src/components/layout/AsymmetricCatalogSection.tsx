@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Box, 
   Typography, 
-  TextField, 
   Chip, 
   IconButton, 
   LinearProgress, 
@@ -11,7 +10,6 @@ import {
 } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
 import {
-  Search,
   PlayArrow,
   ChevronLeft,
   ChevronRight,
@@ -74,7 +72,7 @@ const AsymmetricGrid = styled(Box)(() => ({
   maxWidth: '1800px',
   margin: '0 auto',
   gridTemplateAreas: `
-    "search search search search search search premium premium premium premium . . . . . ."
+    "premium premium premium premium premium premium premium premium premium premium . . . . . ."
     "featured featured featured featured featured featured featured continue continue continue continue continue continue continue continue continue"
     "featured featured featured featured featured featured featured newreleases newreleases newreleases newreleases genres genres genres genres genres"
     "featured featured featured featured featured featured featured recommendations recommendations recommendations recommendations streaming streaming streaming streaming streaming"
@@ -84,7 +82,7 @@ const AsymmetricGrid = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-lg))': {
     gridTemplateColumns: 'repeat(12, 1fr)',
     gridTemplateAreas: `
-      "search search search search search search search search premium premium premium premium"
+      "premium premium premium premium premium premium premium premium premium premium"
       "featured featured featured featured featured featured featured featured continue continue continue continue"
       "featured featured featured featured featured featured featured featured newreleases newreleases newreleases newreleases"
       "genres genres genres genres streaming streaming streaming streaming recommendations recommendations recommendations recommendations"
@@ -95,7 +93,7 @@ const AsymmetricGrid = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-md))': {
     gridTemplateColumns: 'repeat(8, 1fr)',
     gridTemplateAreas: `
-      "search search search search search search premium premium"
+      "premium premium premium premium premium premium premium"
       "featured featured featured featured featured featured featured featured"
       "continue continue continue continue continue continue continue continue"
       "newreleases newreleases newreleases newreleases genres genres genres genres"
@@ -107,7 +105,6 @@ const AsymmetricGrid = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
     gridTemplateAreas: `
-      "search"
       "premium"
       "featured"
       "continue"
@@ -117,57 +114,8 @@ const AsymmetricGrid = styled(Box)(() => ({
       "recommendations"
       "trending"
     `,
-    gap: 'calc(var(--grid-base) * 2)',
-  },
-}));
-
-// Search Interface
-const SearchSection = styled(Box)(() => ({
-  gridArea: 'search',
-  display: 'flex',
-  alignItems: 'center',
-  gap: 'calc(var(--grid-base) * 2)',
-  animation: `${fadeInUp} 0.8s var(--ease-out-expo)`,
-  marginBottom: 'calc(var(--grid-base) * 2)', // Add spacing
-  
-  '@media (max-width: var(--breakpoint-sm))': {
-    gap: 'calc(var(--grid-base) * 1)',
-    marginBottom: 'calc(var(--grid-base) * 1.5)',
-  },
-}));
-
-const EnhancedSearchField = styled(TextField)(() => ({
-  flex: 1,
-  '& .MuiOutlinedInput-root': {
-    background: 'var(--glass-background)',
-    backdropFilter: 'var(--glass-blur)',
-    border: 'var(--glass-border)',
-    borderRadius: 'calc(var(--grid-base) * 2)',
-    fontSize: '1.125rem',
-    padding: 'calc(var(--grid-base) * 0.5)',
-    transition: 'all var(--animation-medium) var(--ease-out-expo)',
-    
-    '&:hover': {
-      border: 'var(--glass-hover-border)',
-      boxShadow: 'var(--glass-hover-shadow)',
-    },
-    
-    '&.Mui-focused': {
-      border: 'var(--glass-active-border)',
-      boxShadow: 'var(--glass-active-shadow)',
-    },
-    
-    '& fieldset': {
-      border: 'none',
-    },
-  },
-  
-  '& .MuiInputBase-input': {
-    color: 'var(--color-text-primary)',
-    '&::placeholder': {
-      color: 'var(--color-text-secondary)',
-      opacity: 0.7,
-    },
+    gap: 'var(--mobile-card-gap)',
+    padding: 'var(--mobile-padding)',
   },
 }));
 
@@ -185,6 +133,8 @@ const FeaturedSection = styled(Box)(() => ({
   
   '@media (max-width: var(--breakpoint-sm))': {
     minHeight: '400px',
+    marginBottom: 'var(--mobile-section-gap)',
+    borderRadius: 'calc(var(--grid-base) * 2)',
   },
 }));
 
@@ -418,7 +368,6 @@ interface FeaturedContent extends ContentItem {
 
 const AsymmetricCatalogSection: React.FC = () => {
   // State management
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -578,18 +527,6 @@ const AsymmetricCatalogSection: React.FC = () => {
   return (
     <CatalogContainer>
       <AsymmetricGrid>
-        {/* Enhanced Search Interface */}
-        <SearchSection>
-          <EnhancedSearchField
-            placeholder="Search movies, shows, and documentaries..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            InputProps={{
-              startAdornment: <Search sx={{ color: 'var(--color-primary)', mr: 1 }} />,
-            }}
-          />
-        </SearchSection>
-
         {/* Premium Promotion */}
         <PremiumSection>
           <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: 'inherit' }}>
@@ -899,7 +836,15 @@ const AsymmetricCatalogSection: React.FC = () => {
             <TrendingUp sx={{ color: 'var(--color-primary)' }} />
             Trending Now
           </SectionTitle>
-          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2 }}>
+          <Box sx={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: 2,
+            '@media (max-width: 600px)': {
+              gridTemplateColumns: '1fr',
+              gap: 'var(--mobile-card-gap)',
+            }
+          }}>
             {content.map((item) => (
               <ContentCard
                 key={item.id}

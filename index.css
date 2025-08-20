@@ -27,6 +27,11 @@
   --grid-margin-tablet: 32px;
   --grid-margin-desktop: 64px;
   
+  /* Mobile-specific spacing */
+  --mobile-card-gap: calc(var(--grid-base) * 2);
+  --mobile-section-gap: calc(var(--grid-base) * 3);
+  --mobile-padding: calc(var(--grid-base) * 2);
+  
   /* Dynamic Grid Sizing - Enhanced for Magazine Layouts */
   --grid-hero-height: 480px;
   --grid-feature-height: 360px;
@@ -220,6 +225,30 @@ body {
   .MuiTypography-h4 { font-size: clamp(1.125rem, 3vw, 1.5rem) !important; }
   .MuiTypography-h5 { font-size: clamp(1rem, 2.5vw, 1.25rem) !important; }
   .MuiTypography-h6 { font-size: clamp(0.875rem, 2vw, 1.125rem) !important; }
+  
+  /* Mobile card layout improvements */
+  .mobile-stack-cards {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--mobile-card-gap) !important;
+  }
+  
+  .mobile-stack-cards > * {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  /* Mobile section spacing */
+  .mobile-section {
+    margin-bottom: var(--mobile-section-gap) !important;
+    padding: var(--mobile-padding) !important;
+  }
+  
+  /* Mobile grid overrides */
+  .mobile-single-column {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: none !important;
+  }
 }
 
 /* Enhanced animations for mobile */

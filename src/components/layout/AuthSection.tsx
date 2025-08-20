@@ -7,14 +7,18 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GlowButton from '../ui/GlowButton';
 import GlassCard from '../ui/GlassCard';
 
-const AuthContainer = styled(Box)(({ theme }) => ({
+const AuthContainer = styled(Box)(() => ({
   minHeight: '100vh',
   display: 'flex',
-  background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, #1a1a2e 100%)`,
   position: 'relative',
   overflow: 'hidden',
   
-  // Add animated background elements
+  // Mobile layout adjustments
+  '@media (max-width: 900px)': {
+    flexDirection: 'column',
+  },
+  
+  // Add diffused movie background image
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -22,24 +26,99 @@ const AuthContainer = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(65, 105, 225, 0.1) 0%, transparent 50%)',
-    animation: 'float 6s ease-in-out infinite alternate',
+    background: `
+      linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(26, 26, 46, 0.9) 50%, rgba(10, 10, 15, 0.95) 100%),
+      url('https://images.unsplash.com/photo-1489599540918-8c3d2de66e1a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHRoZWF0ZXJ8ZW58MHwwfHx8MTc1NTEzMTQzM3ww&ixlib=rb-4.1.0&q=85&w=1920&h=1080')
+    `,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    filter: 'blur(2px) brightness(0.3)',
     zIndex: 1,
+    
+    '@media (max-width: 900px)': {
+      backgroundAttachment: 'scroll',
+    },
+  },
+  
+  // Add animated overlay elements
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: `
+      radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(65, 105, 225, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 70%)
+    `,
+    animation: 'float 8s ease-in-out infinite alternate',
+    zIndex: 2,
+  },
+  
+  // Add floating particles
+  '& .particle': {
+    position: 'absolute',
+    width: '4px',
+    height: '4px',
+    background: 'rgba(0, 255, 255, 0.6)',
+    borderRadius: '50%',
+    animation: 'particleFloat 6s ease-in-out infinite',
+    zIndex: 2,
+  },
+  
+  '& .particle:nth-child(1)': {
+    top: '20%',
+    left: '10%',
+    animationDelay: '0s',
+    animationDuration: '8s',
+  },
+  
+  '& .particle:nth-child(2)': {
+    top: '60%',
+    right: '15%',
+    animationDelay: '2s',
+    animationDuration: '10s',
+  },
+  
+  '& .particle:nth-child(3)': {
+    bottom: '30%',
+    left: '20%',
+    animationDelay: '4s',
+    animationDuration: '12s',
   },
   
   '@keyframes float': {
     '0%': { transform: 'translateY(0px) rotate(0deg)' },
-    '100%': { transform: 'translateY(-20px) rotate(2deg)' },
+    '100%': { transform: 'translateY(-15px) rotate(1deg)' },
+  },
+  
+  '@keyframes particleFloat': {
+    '0%, 100%': { 
+      transform: 'translateY(0px) translateX(0px)',
+      opacity: 0.6,
+    },
+    '50%': { 
+      transform: 'translateY(-20px) translateX(10px)',
+      opacity: 1,
+    },
   },
 }));
 
 const VisualSide = styled(Box)({
-  background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(65, 105, 225, 0.1) 100%)',
   position: 'relative',
   overflow: 'hidden',
   alignItems: 'center',
   justifyContent: 'center',
-  zIndex: 2,
+  zIndex: 3,
+  
+  // Mobile adjustments
+  '@media (max-width: 900px)': {
+    minHeight: '40vh',
+    padding: '2rem 1rem',
+  },
   
   // Add floating elements
   '&::after': {
@@ -47,16 +126,42 @@ const VisualSide = styled(Box)({
     position: 'absolute',
     top: '10%',
     right: '10%',
-    width: '100px',
-    height: '100px',
-    background: 'radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%)',
+    width: '120px',
+    height: '120px',
+    background: 'radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 70%)',
     borderRadius: '50%',
     animation: 'pulse 4s ease-in-out infinite',
+    
+    '@media (max-width: 900px)': {
+      width: '80px',
+      height: '80px',
+      top: '5%',
+      right: '5%',
+    },
+  },
+  
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    bottom: '15%',
+    left: '15%',
+    width: '80px',
+    height: '80px',
+    background: 'radial-gradient(circle, rgba(65, 105, 225, 0.3) 0%, transparent 70%)',
+    borderRadius: '50%',
+    animation: 'pulse 6s ease-in-out infinite reverse',
+    
+    '@media (max-width: 900px)': {
+      width: '60px',
+      height: '60px',
+      bottom: '10%',
+      left: '10%',
+    },
   },
   
   '@keyframes pulse': {
-    '0%, 100%': { transform: 'scale(1)', opacity: 0.3 },
-    '50%': { transform: 'scale(1.2)', opacity: 0.6 },
+    '0%, 100%': { transform: 'scale(1)', opacity: 0.4 },
+    '50%': { transform: 'scale(1.3)', opacity: 0.7 },
   },
 });
 
@@ -66,7 +171,13 @@ const FormSide = styled(Box)({
   justifyContent: 'center',
   padding: '40px 20px',
   position: 'relative',
-  zIndex: 2,
+  zIndex: 3,
+  
+  // Mobile adjustments
+  '@media (max-width: 900px)': {
+    padding: '20px 16px',
+    minHeight: '60vh',
+  },
 });
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -188,8 +299,13 @@ const AuthSection: React.FC = () => {
 
   return (
     <AuthContainer>
+      {/* Floating particles */}
+      <Box className="particle" />
+      <Box className="particle" />
+      <Box className="particle" />
+      
       <VisualSide sx={{ flex: 1, display: { xs: 'none', md: 'flex' } }}>
-        <Box sx={{ textAlign: 'center', p: 4 }}>
+        <Box sx={{ textAlign: 'center', p: 4, position: 'relative', zIndex: 4 }}>
           <Typography 
             variant="h2" 
             sx={{ 
@@ -197,26 +313,120 @@ const AuthSection: React.FC = () => {
               background: 'linear-gradient(135deg, #00ffff, #4169e1)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
+              WebkitTextFillColor: 'transparent',
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              fontWeight: 700,
+              textShadow: '0 0 30px rgba(0, 255, 255, 0.3)',
+              lineHeight: 1.2,
             }}
           >
             Welcome to the Future of Streaming
           </Typography>
-          <Typography variant="body1" sx={{ color: 'text.secondary', fontSize: '1.125rem' }}>
+          <Typography variant="body1" sx={{ 
+            color: 'text.secondary', 
+            fontSize: { xs: '1rem', sm: '1.125rem' },
+            mb: 4,
+            maxWidth: '500px',
+            margin: '0 auto 2rem auto',
+            lineHeight: 1.6,
+            px: { xs: 2, sm: 0 },
+          }}>
             Join millions of users who are already enjoying synchronized streaming experiences with friends worldwide.
           </Typography>
+          
+          {/* Add decorative elements */}
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: { xs: 1, sm: 2 }, 
+            mb: 3,
+            flexWrap: 'wrap'
+          }}>
+            <Box sx={{
+              width: { xs: '40px', sm: '60px' },
+              height: { xs: '40px', sm: '60px' },
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(65, 105, 225, 0.2))',
+              border: '2px solid rgba(0, 255, 255, 0.3)',
+              animation: 'float 3s ease-in-out infinite',
+            }} />
+            <Box sx={{
+              width: { xs: '50px', sm: '80px' },
+              height: { xs: '50px', sm: '80px' },
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(65, 105, 225, 0.2), rgba(0, 255, 255, 0.2))',
+              border: '2px solid rgba(65, 105, 225, 0.3)',
+              animation: 'float 4s ease-in-out infinite reverse',
+            }} />
+            <Box sx={{
+              width: { xs: '40px', sm: '60px' },
+              height: { xs: '40px', sm: '60px' },
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(65, 105, 225, 0.2))',
+              border: '2px solid rgba(0, 255, 255, 0.3)',
+              animation: 'float 3.5s ease-in-out infinite',
+            }} />
+          </Box>
+          
+          {/* Add feature highlights */}
+          <Box sx={{ 
+            display: 'grid', 
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(auto-fit, minmax(200px, 1fr))' }, 
+            gap: { xs: 1.5, sm: 2 }, 
+            maxWidth: '600px',
+            margin: '0 auto',
+            px: { xs: 2, sm: 0 },
+          }}>
+            <Box sx={{
+              p: { xs: 1.5, sm: 2 },
+              background: 'rgba(0, 255, 255, 0.1)',
+              borderRadius: '12px',
+              border: '1px solid rgba(0, 255, 255, 0.2)',
+              backdropFilter: 'blur(10px)',
+            }}>
+              <Typography variant="h6" sx={{ color: 'primary.main', mb: 1, fontSize: { xs: '1rem', sm: '1.25rem' } }}>
+                🎬 Sync Watch
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+                Watch together with friends in perfect sync
+              </Typography>
+            </Box>
+            <Box sx={{
+              p: { xs: 1.5, sm: 2 },
+              background: 'rgba(65, 105, 225, 0.1)',
+              borderRadius: '12px',
+              border: '1px solid rgba(65, 105, 225, 0.2)',
+              backdropFilter: 'blur(10px)',
+            }}>
+              <Typography variant="h6" sx={{ color: 'secondary.main', mb: 1, fontSize: { xs: '1rem', sm: '1.25rem' } }}>
+                🌟 Premium Content
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+                Access to exclusive movies and shows
+              </Typography>
+            </Box>
+          </Box>
         </Box>
       </VisualSide>
 
       <FormSide sx={{ flex: 1 }}>
-        <GlassCard sx={{ p: 4, maxWidth: '400px', width: '100%' }}>
+        <GlassCard sx={{ 
+          p: { xs: 3, md: 4 }, 
+          maxWidth: '400px', 
+          width: '100%',
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+        }}>
           <Typography 
             variant="h3" 
             component="h1" 
             sx={{ 
               textAlign: 'center', 
               mb: 1,
-              color: 'text.primary'
+              color: 'text.primary',
+              fontWeight: 600,
             }}
           >
             {isLogin ? 'Welcome Back' : 'Create Account'}
@@ -227,7 +437,8 @@ const AuthSection: React.FC = () => {
             sx={{ 
               textAlign: 'center', 
               mb: 4, 
-              color: 'text.secondary' 
+              color: 'text.secondary',
+              lineHeight: 1.5,
             }}
           >
             {isLogin ? 'Sign in to continue your streaming journey' : 'Join the social streaming revolution'}

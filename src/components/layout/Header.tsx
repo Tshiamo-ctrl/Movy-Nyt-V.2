@@ -25,10 +25,31 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import GlowButton from '../ui/GlowButton';
 
 const StyledAppBar = styled(AppBar)({
-  background: 'rgba(10, 10, 15, 0.9)',
-  backdropFilter: 'blur(20px)',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-  boxShadow: '0 4px 32px rgba(0, 255, 255, 0.1)'
+  background: 'var(--glass-background)',
+  backdropFilter: 'var(--glass-blur)',
+  borderBottom: 'var(--glass-border)',
+  boxShadow: 'var(--glass-shadow)',
+  transition: 'all var(--animation-medium) var(--ease-out-expo)',
+  
+  '&:hover': {
+    background: 'var(--glass-background-strong)',
+    backdropFilter: 'var(--glass-blur-strong)',
+    borderBottom: 'var(--glass-border-strong)',
+    boxShadow: 'var(--glass-hover-shadow)',
+  },
+  
+  // Add subtle gradient overlay
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'var(--gradient-overlay-light)',
+    opacity: 0.3,
+    pointerEvents: 'none',
+  },
 });
 
 const LogoText = styled(Typography)(({ theme }) => ({
@@ -208,9 +229,10 @@ const Header: React.FC = () => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: 240,
-            background: 'rgba(26, 26, 46, 0.95)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
+            background: 'var(--glass-background-strong)',
+            backdropFilter: 'var(--glass-blur-strong)',
+            border: 'var(--glass-border-strong)',
+            boxShadow: 'var(--glass-shadow)',
           }
         }}
       >
@@ -224,10 +246,12 @@ const Header: React.FC = () => {
         onClose={handleUserMenuClose}
         sx={{
           '& .MuiPaper-root': {
-            background: 'rgba(26, 26, 46, 0.95)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            mt: 1
+            background: 'var(--glass-background-strong)',
+            backdropFilter: 'var(--glass-blur-strong)',
+            border: 'var(--glass-border-strong)',
+            boxShadow: 'var(--glass-shadow)',
+            mt: 1,
+            borderRadius: '12px',
           }
         }}
       >
