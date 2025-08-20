@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Skeleton, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
 
 const shimmerAnimation = keyframes`

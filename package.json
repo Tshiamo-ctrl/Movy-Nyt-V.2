@@ -9,7 +9,7 @@
     "lint": "eslint src --ext .ts,.tsx",
     "build": "npm run typecheck && npm run lint && vite build",
     "preview": "vite preview",
-    "start": "vite preview --host 0.0.0.0 --port $PORT",
+    "start": "npx serve -s dist -l ${PORT:-3000}",
     "predeploy-test": "sh scripts/predeploy-test.sh"
   },
   "dependencies": {
@@ -19,7 +19,8 @@
     "@mui/material": "^5.15.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1"
+    "react-router-dom": "^6.20.1",
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

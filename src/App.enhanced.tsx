@@ -10,7 +10,7 @@ import LoadingScreen from './components/ui/LoadingScreen';
 import ShadowPage from './components/ui/ShadowPage';
 import AnimatedTransition from './components/ui/AnimatedTransition';
 import MobileOptimizedCard from './components/ui/MobileOptimizedCard';
-import EnhancedMobileLayout from './components/layout/EnhancedMobileLayout';
+// import EnhancedMobileLayout from './components/layout/EnhancedMobileLayout';
 import Header from './components/layout/Header';
 import AsymmetricFriendsSection from './components/layout/AsymmetricFriendsSection';
 import AsymmetricCatalogSection from './components/layout/AsymmetricCatalogSection';

@@ -5,3 +5,4 @@ builder = "nixpacks"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "always"
+startCommand = "npm start"

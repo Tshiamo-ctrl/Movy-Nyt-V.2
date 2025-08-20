@@ -29,7 +29,7 @@ const PageContainer = styled(Box)(() => ({
 
 const App: React.FC = () => {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [showShadow, setShowShadow] = useState(false);
   const location = useLocation();
 
@@ -48,10 +48,10 @@ const App: React.FC = () => {
   useEffect(() => {
     if (!isFirstLoad) {
       setShowShadow(true);
-      setIsLoading(true);
+      // setIsLoading(true);
       
       const timer = setTimeout(() => {
-        setIsLoading(false);
+        // setIsLoading(false);
         setShowShadow(false);
       }, 1000);
 
@@ -61,7 +61,7 @@ const App: React.FC = () => {
 
   const handleLoadComplete = () => {
     setIsFirstLoad(false);
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   const getShadowVariant = () => {
