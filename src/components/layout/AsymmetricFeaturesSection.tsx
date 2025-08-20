@@ -37,8 +37,8 @@ const FeaturesContainer = styled(Box)(() => ({
   position: 'relative',
   background: `linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 50%, var(--color-background) 100%)`,
   overflow: 'hidden',
-  paddingTop: 'calc(var(--grid-base) * 8)', // Reduced from 15 to 8
-  paddingBottom: 'calc(var(--grid-base) * 8)', // Reduced from 15 to 8
+  paddingTop: 'calc(var(--grid-base) * 4)', // Reduced from 8 to 4
+  paddingBottom: 'calc(var(--grid-base) * 4)', // Reduced from 8 to 4
 }));
 
 const AsymmetricLayout = styled(Box)(() => ({
@@ -47,7 +47,7 @@ const AsymmetricLayout = styled(Box)(() => ({
   padding: 'var(--grid-margin-mobile)',
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gap: 'calc(var(--grid-base) * 2.5)', // Reduced from 4 to 2.5
+  gap: '16px', // Reduced from calc(var(--grid-base) * 2.5) to 16px
   alignItems: 'start',
   
   '@media (min-width: var(--breakpoint-sm))': {
@@ -60,7 +60,7 @@ const AsymmetricLayout = styled(Box)(() => ({
 
 const HeaderSection = styled(Box)(() => ({
   gridColumn: '1 / span 8',
-  marginBottom: 'calc(var(--grid-base) * 3)', // Reduced from 6 to 3
+  marginBottom: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
   animation: `${slideInFromBottom} 1s var(--ease-out-expo)`,
   
   '@media (max-width: var(--breakpoint-md))': {
@@ -74,8 +74,8 @@ const FeatureCard = styled(Box, {
   background: featured ? 'var(--glass-background-strong)' : 'var(--glass-background)',
   backdropFilter: 'var(--glass-blur)',
   border: featured ? 'var(--glass-border-strong)' : 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 3)', // Reduced from 4 to 3
+  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
   position: 'relative',
   overflow: 'hidden',
   transition: `all var(--animation-medium) var(--ease-out-expo)`,
@@ -97,7 +97,7 @@ const FeatureCard = styled(Box, {
   },
   
   '&:hover': {
-    transform: 'translateY(-8px)',
+    transform: 'translateY(-4px)', // Reduced from -8px to -4px
     boxShadow: 'var(--glass-hover-shadow)',
     border: 'var(--glass-hover-border)',
     '&::before': {
@@ -109,26 +109,26 @@ const FeatureCard = styled(Box, {
 const IconWrapper = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'featured'
 })<{ featured?: boolean }>(({ featured }) => ({
-  width: featured ? '100px' : '80px',
-  height: featured ? '100px' : '80px',
+  width: featured ? '80px' : '64px', // Reduced from 100px/80px to 80px/64px
+  height: featured ? '80px' : '64px', // Reduced from 100px/80px to 80px/64px
   borderRadius: '50%',
   background: 'var(--gradient-brand)',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
+  marginBottom: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
   boxShadow: 'var(--glass-shadow)',
   position: 'relative',
   zIndex: 2,
   transition: `all var(--animation-medium) var(--ease-out-expo)`,
   
   '& svg': {
-    fontSize: featured ? '2.5rem' : '2rem',
+    fontSize: featured ? '2rem' : '1.5rem', // Reduced from 2.5rem/2rem to 2rem/1.5rem
     color: 'var(--color-background)',
   },
   
   '&:hover': {
-    transform: 'scale(1.1) rotate(5deg)',
+    transform: 'scale(1.05) rotate(3deg)', // Reduced from 1.1/5deg to 1.05/3deg
     boxShadow: 'var(--glass-hover-shadow)',
   },
 }));
@@ -138,8 +138,8 @@ const StatsWidget = styled(Box)(() => ({
   background: 'var(--glass-background)',
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 2.5)', // Reduced from 3 to 2.5
+  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 2.5 to 2
   animation: `${rotateIn} 1s var(--ease-out-expo) 0.5s both`,
   
   '@media (max-width: var(--breakpoint-md))': {
@@ -150,7 +150,7 @@ const StatsWidget = styled(Box)(() => ({
 
 const TrendingSection = styled(Box)(() => ({
   gridColumn: 'span 12',
-  marginTop: 'calc(var(--grid-base) * 4)', // Reduced from 8 to 4
+  marginTop: 'calc(var(--grid-base) * 2)', // Reduced from 4 to 2
 }));
 
 const ShimmerText = styled(Typography)(() => ({

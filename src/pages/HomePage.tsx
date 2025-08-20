@@ -35,32 +35,32 @@ const QuickStatsSection = styled(Box)(() => ({
   background: 'var(--glass-background-subtle)',
   backdropFilter: 'var(--glass-blur-subtle)',
   border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 3)',
-  margin: '20px auto', // Reduced from 32px to 20px for better proportions
+  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
+  margin: '8px auto', // Reduced from 10px to 8px for better density
   maxWidth: '1200px',
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-  gap: 'calc(var(--grid-base) * 2)',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', // Reduced from 200px to 180px
+  gap: '16px', // Reduced from calc(var(--grid-base) * 2) to 16px
   alignItems: 'center',
   
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
-    gap: 'calc(var(--grid-base) * 1.5)',
-    margin: '16px auto', // Smaller margin on mobile
+    gap: '12px', // Reduced from calc(var(--grid-base) * 1.5) to 12px
+    margin: '6px auto', // Reduced from 8px to 6px
   },
 }));
 
 const StatItem = styled(Box)(() => ({
   textAlign: 'center',
-  padding: 'calc(var(--grid-base) * 1.5)',
+  padding: 'calc(var(--grid-base) * 1)', // Reduced from 1.5 to 1
   background: 'var(--glass-background)',
-  borderRadius: 'calc(var(--grid-base) * 1.5)',
+  borderRadius: 'calc(var(--grid-base) * 1)', // Reduced from 1.5 to 1
   border: 'var(--glass-border)',
   transition: 'all var(--animation-medium) var(--ease-out-expo)',
   
   '&:hover': {
-    transform: 'translateY(-4px)',
+    transform: 'translateY(-2px)', // Reduced from -4px to -2px
     boxShadow: 'var(--glass-hover-shadow)',
     border: 'var(--glass-hover-border)',
   },
@@ -68,8 +68,8 @@ const StatItem = styled(Box)(() => ({
 
 const ContentPreviewSection = styled(Box)(() => ({
   background: 'var(--color-surface)',
-  padding: '20px 0', // Reduced from 32px to 20px for better proportions
-  margin: '20px 0', // Reduced from 32px to 20px for better proportions
+  padding: '16px 0', // Reduced from 20px to 16px
+  margin: '16px 0', // Reduced from 20px to 16px
 }));
 
 const ContentPreviewGrid = styled(Box)(() => ({
@@ -77,8 +77,8 @@ const ContentPreviewGrid = styled(Box)(() => ({
   margin: '0 auto',
   padding: '0 var(--grid-margin-mobile)',
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-  gap: 'calc(var(--grid-base) * 2)',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', // Reduced from 280px to 250px
+  gap: '16px', // Reduced from calc(var(--grid-base) * 2) to 16px
   
   '@media (min-width: var(--breakpoint-sm))': {
     padding: '0 var(--grid-margin-tablet)',
@@ -92,13 +92,13 @@ const PreviewCard = styled(Box)(() => ({
   background: 'var(--glass-background)',
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 2.5)',
+  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 2.5 to 2
   transition: 'all var(--animation-medium) var(--ease-out-expo)',
   cursor: 'pointer',
   
   '&:hover': {
-    transform: 'translateY(-6px)',
+    transform: 'translateY(-4px)', // Reduced from -6px to -4px
     boxShadow: 'var(--glass-hover-shadow)',
     border: 'var(--glass-hover-border)',
   },
@@ -190,8 +190,8 @@ const HomePage: React.FC = () => {
         
         {/* Content Preview Section - fills more negative space */}
         <ContentPreviewSection>
-          <Box sx={{ textAlign: 'center', mb: '24px' }}> {/* Reduced from 3 to 24px */}
-            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
+          <Box sx={{ textAlign: 'center', mb: '16px' }}> {/* Reduced from 24px to 16px */}
+            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 1.5 }}> {/* Reduced from 2 to 1.5 */}
               <TrendingUp sx={{ color: 'primary.main' }} />
               <Typography variant="h3" sx={{ color: 'white', fontWeight: 700 }}>
                 What&apos;s Hot Right Now

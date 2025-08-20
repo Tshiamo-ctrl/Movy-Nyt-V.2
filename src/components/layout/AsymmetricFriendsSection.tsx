@@ -84,13 +84,13 @@ const heartBeat = keyframes`
 const FriendsContainer = styled(Box)(() => ({
   minHeight: '100vh',
   background: 'linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 30%, var(--color-background) 70%)',
-  padding: '32px var(--grid-margin-mobile)', // Reduced from 4 to 32px (max 50px)
+  padding: '16px var(--grid-margin-mobile)', // Reduced from 32px to 16px
   
   '@media (min-width: var(--breakpoint-sm))': {
-    padding: '40px var(--grid-margin-tablet)', // Reduced from 6 to 40px (max 50px)
+    padding: '20px var(--grid-margin-tablet)', // Reduced from 40px to 20px
   },
   '@media (min-width: var(--breakpoint-lg))': {
-    padding: '48px var(--grid-margin-desktop)', // Reduced from 8 to 48px (max 50px)
+    padding: '24px var(--grid-margin-desktop)', // Reduced from 48px to 24px
   },
 }));
 
@@ -98,7 +98,7 @@ const AsymmetricGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
   gridTemplateRows: 'auto auto auto auto',
-  gap: '24px', // Reduced from 3 to 24px (max 50px)
+  gap: '16px', // Reduced from 24px to 16px
   maxWidth: '1600px',
   margin: '0 auto',
   gridTemplateAreas: `
@@ -138,7 +138,7 @@ const AsymmetricGrid = styled(Box)(() => ({
       "requests"
       "activity"
     `,
-    gap: '20px', // Reduced from 2 to 20px (max 50px)
+    gap: '12px', // Reduced from 20px to 12px
   },
 }));
 
@@ -204,17 +204,17 @@ const ConnectionsArea = styled(Box)(() => ({
 
 const FriendConnectionsGrid = styled(Box)(() => ({
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-  gap: '24px', // Reduced from 3 to 24px (max 50px)
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', // Reduced from 300px to 280px
+  gap: '16px', // Reduced from 24px to 16px
   
   '@media (max-width: var(--breakpoint-lg))': {
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '20px', // Reduced from 2.5 to 20px (max 50px)
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', // Reduced from 280px to 260px
+    gap: '12px', // Reduced from 20px to 12px
   },
   
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
-    gap: '16px', // Reduced from 2 to 16px (max 50px)
+    gap: '12px', // Reduced from 16px to 12px
   },
 }));
 
@@ -222,39 +222,39 @@ const FriendConnectionsGrid = styled(Box)(() => ({
 const FriendCard = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'priority' && prop !== 'isOnline'
 })<{ priority?: number; isOnline?: boolean }>(({ priority = 5, isOnline }) => {
-  const cardHeight = priority >= 8 ? '300px' : priority >= 6 ? '250px' : '200px';
+  const cardHeight = priority >= 8 ? '240px' : priority >= 6 ? '200px' : '160px'; // Reduced heights
   
   return {
     background: isOnline ? 'var(--glass-background-strong)' : 'var(--glass-background)',
     backdropFilter: 'var(--glass-blur)',
     border: isOnline ? 'var(--glass-border-strong)' : 'var(--glass-border)',
-    borderRadius: 'calc(var(--grid-base) * 2)',
-    padding: 'calc(var(--grid-base) * 3)',
+    borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+    padding: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
     minHeight: cardHeight,
     cursor: 'pointer',
     transition: 'all var(--animation-medium) var(--ease-out-expo)',
     animation: `${cardReveal} 0.8s var(--ease-out-expo)`,
     position: 'relative',
     overflow: 'hidden',
-    marginBottom: 'calc(var(--grid-base) * 2)', // Prevent overlap
+    marginBottom: '12px', // Reduced from calc(var(--grid-base) * 2) to 12px
     
     // Mobile-first responsive sizing
     '@media (max-width: var(--breakpoint-sm))': {
-      padding: 'calc(var(--grid-base) * 2)',
-      minHeight: priority >= 8 ? '240px' : priority >= 6 ? '200px' : '160px',
-      transform: 'none', // Remove scaling on mobile for better readability
-      marginBottom: 'calc(var(--grid-base) * 1.5)',
+      padding: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+      minHeight: priority >= 8 ? '200px' : priority >= 6 ? '160px' : '120px', // Reduced heights
+      transform: 'none',
+      marginBottom: '8px', // Reduced from calc(var(--grid-base) * 1.5) to 8px
     },
     
-    // Tablet sizing - remove transform scaling to prevent overlap
+    // Tablet sizing
     '@media (min-width: var(--breakpoint-sm)) and (max-width: var(--breakpoint-lg))': {
-      transform: 'none', // Remove scaling to prevent overlap
+      transform: 'none',
       transformOrigin: 'center top',
     },
     
-    // Desktop sizing - remove transform scaling to prevent overlap
+    // Desktop sizing
     '@media (min-width: var(--breakpoint-lg))': {
-      transform: 'none', // Remove scaling to prevent overlap
+      transform: 'none',
       transformOrigin: 'center top',
     },
     
@@ -272,7 +272,7 @@ const FriendCard = styled(Box, {
     },
     
     '&:hover': {
-      transform: 'translateY(-4px)', // Simplified hover effect
+      transform: 'translateY(-2px)', // Reduced from -4px to -2px
       boxShadow: 'var(--glass-hover-shadow)',
       border: 'var(--glass-hover-border)',
       '&::before': {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Stack, Chip, Avatar, AvatarGroup, Badge } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
-import { PersonAdd, PlayArrow, TrendingUp, Group } from '@mui/icons-material';
+import { PersonAdd, PlayArrow, Group } from '@mui/icons-material';
 import GlowButton from '../ui/GlowButton';
 import ContentCard from '../ui/ContentCard';
 
@@ -34,7 +34,7 @@ const pulseGlow = keyframes`
 
 // Styled components
 const HeroContainer = styled(Box)(() => ({
-  minHeight: '70vh', // Reduced from 100vh to eliminate excessive vertical space
+  minHeight: '50vh', // Reduced from 70vh to 50vh for better content density
   position: 'relative',
   overflow: 'hidden',
   background: 'var(--gradient-overlay-dark)',
@@ -63,26 +63,26 @@ const AsymmetricGrid = styled(Box)(() => ({
   padding: 'var(--grid-margin-mobile)',
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gridTemplateRows: 'repeat(6, minmax(60px, 1fr))', // Reduced from 8 rows to 6
-  gap: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2 to eliminate large gaps
-  minHeight: '70vh', // Reduced from 100vh
+  gridTemplateRows: 'repeat(4, minmax(50px, 1fr))', // Reduced from 6 to 4 rows
+  gap: '16px', // Reduced from calc(var(--grid-base) * 2) to 16px
+  minHeight: '50vh', // Reduced from 70vh to 50vh
   alignContent: 'center',
   
   '@media (min-width: var(--breakpoint-sm))': {
     padding: 'var(--grid-margin-tablet)',
-    gap: 'calc(var(--grid-base) * 2.5)', // Reduced from 4 to 2.5
+    gap: '20px', // Reduced from calc(var(--grid-base) * 2.5) to 20px
   },
   '@media (min-width: var(--breakpoint-lg))': {
     padding: 'var(--grid-margin-desktop)',
-    gap: 'calc(var(--grid-base) * 3)', // Reduced from 5 to 3
+    gap: '24px', // Reduced from calc(var(--grid-base) * 3) to 24px
   },
 }));
 
 const MainHeroCard = styled(Box)(() => ({
   gridColumn: 'span 7',
-  gridRow: 'span 4', // Reduced from 5 to 4
+  gridRow: 'span 3', // Reduced from 4 to 3
   position: 'relative',
-  borderRadius: 'calc(var(--grid-base) * 3)',
+  borderRadius: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
   background: 'var(--glass-background-strong)',
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
@@ -91,7 +91,7 @@ const MainHeroCard = styled(Box)(() => ({
   
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
-    gridRow: 'span 3', // Reduced from 4 to 3
+    gridRow: 'span 2', // Reduced from 3 to 2
   },
   
   '&::before': {
@@ -116,7 +116,7 @@ const HeroContent = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  padding: 'calc(var(--grid-base) * 3)', // Reduced from 4 to 3
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
   background: 'var(--gradient-overlay-dark)',
 }));
 
@@ -133,12 +133,12 @@ const LogoText = styled(Typography)(() => ({
 
 const SocialProofWidget = styled(Box)(() => ({
   gridColumn: 'span 5',
-  gridRow: 'span 2',
+  gridRow: 'span 1', // Reduced from 2 to 1
   background: 'var(--glass-background)',
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 2.5)', // Reduced from 3 to 2.5
+  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 2.5 to 2
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -152,14 +152,14 @@ const SocialProofWidget = styled(Box)(() => ({
 
 const TrendingGrid = styled(Box)(() => ({
   gridColumn: 'span 5',
-  gridRow: 'span 2', // Reduced from 3 to 2
+  gridRow: 'span 1', // Reduced from 2 to 1
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  gap: '12px', // Reduced from calc(var(--grid-base) * 1.5) to 12px
   
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
-    gridRow: 'span 2',
+    gridRow: 'span 1', // Reduced from 2 to 1
     gridTemplateColumns: 'repeat(3, 1fr)',
   },
   '@media (max-width: var(--breakpoint-sm))': {
@@ -173,8 +173,8 @@ const CallToActionCard = styled(Box)(() => ({
   background: 'var(--glass-background-subtle)',
   backdropFilter: 'var(--glass-blur-subtle)',
   border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 2)', // Reduced from 2 to 2 (already minimal)
+  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+  padding: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -183,7 +183,7 @@ const CallToActionCard = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
     flexDirection: 'column',
-    gap: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
+    gap: '12px', // Reduced from calc(var(--grid-base) * 1.5) to 12px
   },
 }));
 
@@ -235,7 +235,6 @@ const AsymmetricHeroSection: React.FC = () => {
   const floatingElements = [
     { type: 'badge', x: 85, y: 20, delay: 0.8 },
     { type: 'avatar', x: 15, y: 75, delay: 1.2 },
-    { type: 'chip', x: 90, y: 80, delay: 1.6 },
   ];
 
   return (
@@ -259,15 +258,6 @@ const AsymmetricHeroSection: React.FC = () => {
               <Avatar src="https://i.pravatar.cc/150?img=2" />
               <Avatar src="https://i.pravatar.cc/150?img=3" />
             </AvatarGroup>
-          )}
-          {element.type === 'chip' && (
-            <Chip 
-              icon={<TrendingUp />} 
-              label="Trending Now" 
-              color="primary" 
-              variant="outlined"
-              className="glass-subtle"
-            />
           )}
         </FloatingElement>
       ))}
