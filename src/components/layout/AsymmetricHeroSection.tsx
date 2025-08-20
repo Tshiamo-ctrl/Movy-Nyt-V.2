@@ -34,7 +34,7 @@ const pulseGlow = keyframes`
 
 // Styled components
 const HeroContainer = styled(Box)(() => ({
-  minHeight: '50vh', // Reduced from 70vh to 50vh for better content density
+  minHeight: '35vh', // Reduced from 50vh to 35vh to eliminate excessive empty space
   position: 'relative',
   overflow: 'hidden',
   background: 'var(--gradient-overlay-dark)',
@@ -63,26 +63,26 @@ const AsymmetricGrid = styled(Box)(() => ({
   padding: 'var(--grid-margin-mobile)',
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gridTemplateRows: 'repeat(4, minmax(50px, 1fr))', // Reduced from 6 to 4 rows
-  gap: '16px', // Reduced from calc(var(--grid-base) * 2) to 16px
-  minHeight: '50vh', // Reduced from 70vh to 50vh
+  gridTemplateRows: 'repeat(3, minmax(40px, 1fr))', // Reduced from 4 to 3 rows with smaller minmax
+  gap: '16px',
+  minHeight: '35vh', // Reduced from 50vh to 35vh
   alignContent: 'center',
   
   '@media (min-width: var(--breakpoint-sm))': {
     padding: 'var(--grid-margin-tablet)',
-    gap: '20px', // Reduced from calc(var(--grid-base) * 2.5) to 20px
+    gap: '20px',
   },
   '@media (min-width: var(--breakpoint-lg))': {
     padding: 'var(--grid-margin-desktop)',
-    gap: '24px', // Reduced from calc(var(--grid-base) * 3) to 24px
+    gap: '24px',
   },
 }));
 
 const MainHeroCard = styled(Box)(() => ({
   gridColumn: 'span 7',
-  gridRow: 'span 3', // Reduced from 4 to 3
+  gridRow: 'span 2', // Reduced from 4 to 2 to fit the new 3-row layout
   position: 'relative',
-  borderRadius: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
+  borderRadius: 'calc(var(--grid-base) * 2)',
   background: 'var(--glass-background-strong)',
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
@@ -152,10 +152,10 @@ const SocialProofWidget = styled(Box)(() => ({
 
 const TrendingGrid = styled(Box)(() => ({
   gridColumn: 'span 5',
-  gridRow: 'span 1', // Reduced from 2 to 1
+  gridRow: 'span 1', // Reduced from 2 to 1 to fit the new 3-row layout
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '12px', // Reduced from calc(var(--grid-base) * 1.5) to 12px
+  gap: '12px',
   
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
@@ -164,26 +164,6 @@ const TrendingGrid = styled(Box)(() => ({
   },
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: 'repeat(2, 1fr)',
-  },
-}));
-
-const CallToActionCard = styled(Box)(() => ({
-  gridColumn: '1 / span 7',
-  gridRow: 'span 1',
-  background: 'var(--glass-background-subtle)',
-  backdropFilter: 'var(--glass-blur-subtle)',
-  border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
-  padding: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  animation: `${fadeInUp} 1s var(--ease-out-expo) 0.6s both`,
-  
-  '@media (max-width: var(--breakpoint-md))': {
-    gridColumn: 'span 12',
-    flexDirection: 'column',
-    gap: '12px', // Reduced from calc(var(--grid-base) * 1.5) to 12px
   },
 }));
 
@@ -291,11 +271,22 @@ const AsymmetricHeroSection: React.FC = () => {
                   color: 'rgba(255, 255, 255, 0.9)',
                   maxWidth: '500px',
                   textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-                  lineHeight: 1.6
+                  lineHeight: 1.6,
+                  mb: 3 // Added margin bottom for spacing
                 }}
               >
                 Experience cinematic moments with friends, wherever they are. Synchronized streaming meets social connection.
               </Typography>
+
+              {/* Call-to-Action Section - moved from CallToActionCard */}
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 600, mb: 1 }}>
+                  Ready to Start Your Journey?
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', mb: 2 }}>
+                  Discover thousands of movies, shows, and exclusive content
+                </Typography>
+              </Box>
             </Box>
 
             <Stack direction="row" spacing={2} flexWrap="wrap" gap={2}>
@@ -323,6 +314,21 @@ const AsymmetricHeroSection: React.FC = () => {
                   '&:hover': { borderColor: 'var(--color-primary)' }
                 }}
               />
+              {/* Call-to-Action Buttons - moved from CallToActionCard */}
+              <GlowButton 
+                variant="primary" 
+                size="large"
+                onClick={() => navigate('/watch-together')}
+              >
+                Start Watching
+              </GlowButton>
+              <GlowButton 
+                variant="outline" 
+                size="large"
+                onClick={() => navigate('/watch')}
+              >
+                Browse Content
+              </GlowButton>
             </Stack>
           </HeroContent>
         </MainHeroCard>
@@ -376,33 +382,7 @@ const AsymmetricHeroSection: React.FC = () => {
           ))}
         </TrendingGrid>
 
-        {/* Call to Action Card */}
-        <CallToActionCard>
-          <Box>
-            <Typography variant="h6" sx={{ color: 'white', fontWeight: 600, mb: 1 }}>
-              Ready to Start Your Journey?
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              Discover thousands of movies, shows, and exclusive content
-            </Typography>
-          </Box>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <GlowButton 
-              variant="primary" 
-              size="large"
-              onClick={() => navigate('/watch-together')}
-            >
-              Start Watching
-            </GlowButton>
-            <GlowButton 
-              variant="outline" 
-              size="large"
-              onClick={() => navigate('/watch')}
-            >
-              Browse Content
-            </GlowButton>
-          </Stack>
-        </CallToActionCard>
+        {/* Remove the Call to Action Card entirely */}
       </AsymmetricGrid>
     </HeroContainer>
   );

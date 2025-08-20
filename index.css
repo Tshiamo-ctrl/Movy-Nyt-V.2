@@ -23,9 +23,9 @@
   --grid-base: 8px;
   --grid-column-base: 60px;
   --grid-column-gap: 24px;
-  --grid-margin-mobile: 16px;
-  --grid-margin-tablet: 32px;
-  --grid-margin-desktop: 64px;
+  --grid-margin-mobile: 4px; /* Reduced from 16px to 4px for ~10mm on 16" screen */
+  --grid-margin-tablet: 8px; /* Reduced from 32px to 8px */
+  --grid-margin-desktop: 16px; /* Reduced from 64px to 16px */
   
   /* Mobile-specific spacing */
   --mobile-card-gap: calc(var(--grid-base) * 2);

@@ -17,16 +17,16 @@ const SmoothScrollContainer = styled(Box)(() => ({
 const SectionDivider = styled(Box)(() => ({
   height: '1px',
   background: 'linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%)',
-  margin: 'calc(var(--grid-base) * 4) auto', // Reduced from 8 to 4
+  margin: '16px auto', // Reduced from calc(var(--grid-base) * 4) to 16px for consistent tight spacing
   maxWidth: '400px',
   opacity: 0.3,
 }));
 
 const PageContainer = styled(Box)(() => ({
-  paddingTop: 'calc(64px + 10px)', // Header height + 10px (reduced from 32px)
+  paddingTop: 'calc(64px + 4px)', // Header height + 4px (reduced from 10px to 4px for ~10mm on 16" screen)
   
   '@media (max-width: var(--breakpoint-sm))': {
-    paddingTop: 'calc(56px + 8px)', // Smaller header spacing on mobile
+    paddingTop: 'calc(56px + 3px)', // Smaller header spacing on mobile
   },
 }));
 
