@@ -1,25 +1,22 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import AsymmetricFriendsSection from '../components/layout/AsymmetricFriendsSection';
+import OptimizedFriendsSection from '../components/layout/OptimizedFriendsSection';
 import FooterSection from '../components/layout/FooterSection';
-import EnhancedMobileLayout from '../components/layout/EnhancedMobileLayout';
 
 const PageContainer = styled(Box)(() => ({
-  paddingTop: 'calc(64px + 10px)', // Header height + 10px (reduced from 32px)
+  paddingTop: 'calc(64px + var(--grid-base))', // Header height + minimal spacing
   
   '@media (max-width: var(--breakpoint-sm))': {
-    paddingTop: 'calc(56px + 8px)', // Smaller header spacing on mobile
+    paddingTop: 'calc(56px + var(--grid-base))', // Smaller header spacing on mobile
   },
 }));
 
 const FriendsPage: React.FC = () => {
   return (
     <PageContainer>
-      <EnhancedMobileLayout maxWidth="1600px" padding={false}>
-        <AsymmetricFriendsSection />
-        <FooterSection />
-      </EnhancedMobileLayout>
+      <OptimizedFriendsSection />
+      <FooterSection />
     </PageContainer>
   );
 };

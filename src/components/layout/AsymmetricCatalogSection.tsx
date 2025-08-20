@@ -4,7 +4,6 @@ import {
   Typography, 
   Chip, 
   IconButton, 
-  LinearProgress, 
   Stack,
   Button
 } from '@mui/material';
@@ -14,7 +13,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Star,
-  AccessTime,
   TrendingUp,
   NewReleases,
   Category,
@@ -233,19 +231,7 @@ const ContinueScrollContainer = styled(Box)(() => ({
   },
 }));
 
-const ContinueWatchItem = styled(Box)(() => ({
-  minWidth: '280px',
-  background: 'var(--glass-background-subtle)',
-  borderRadius: 'calc(var(--grid-base) * 1.5)',
-  overflow: 'hidden',
-  cursor: 'pointer',
-  transition: 'all var(--animation-medium) var(--ease-out-expo)',
-  
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: 'var(--glass-hover-shadow)',
-  },
-}));
+
 
 // Premium Promotion
 const PremiumSection = styled(Box)(() => ({
@@ -645,49 +631,16 @@ const AsymmetricCatalogSection: React.FC = () => {
           
           <ContinueScrollContainer>
             {continueWatching.map((item) => (
-              <ContinueWatchItem key={item.id}>
-                <Box sx={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
-                  {loading ? (
-                    <ImagePlaceholder />
-                  ) : (
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                  )}
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={item.progress} 
-                    sx={{ 
-                      position: 'absolute', 
-                      bottom: 0, 
-                      left: 0, 
-                      right: 0,
-                      height: '4px',
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                      '& .MuiLinearProgress-bar': {
-                        backgroundColor: 'var(--color-primary)',
-                      }
-                    }} 
-                  />
-                </Box>
-                <Box sx={{ p: 2 }}>
-                  <Typography variant="h6" sx={{ color: 'white', fontWeight: 600, mb: 1 }}>
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'var(--color-text-secondary)', mb: 1 }}>
-                    {item.description}
-                  </Typography>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <AccessTime sx={{ fontSize: '16px', color: 'var(--color-text-secondary)' }} />
-                    <Typography variant="caption" sx={{ color: 'var(--color-text-secondary)' }}>
-                      {/* Use &quot; for double quotes and &apos; for single quotes if needed */}
-                      {Math.round((100 - (item.progress ?? 0)) * parseInt(item.duration) / 100)} min left
-                    </Typography>
-                  </Stack>
-                </Box>
-              </ContinueWatchItem>
+              <ContentCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                image={item.image}
+                description={item.description}
+                size="standard"
+                priority={5}
+                loading={loading}
+              />
             ))}
           </ContinueScrollContainer>
         </ContinueSection>

@@ -12,7 +12,7 @@ import AnimatedTransition from './components/ui/AnimatedTransition';
 import MobileOptimizedCard from './components/ui/MobileOptimizedCard';
 // import EnhancedMobileLayout from './components/layout/EnhancedMobileLayout';
 import Header from './components/layout/Header';
-import AsymmetricFriendsSection from './components/layout/AsymmetricFriendsSection';
+import OptimizedFriendsSection from './components/layout/OptimizedFriendsSection';
 import AsymmetricCatalogSection from './components/layout/AsymmetricCatalogSection';
 import AuthSection from './components/layout/AuthSection';
 
@@ -232,7 +232,7 @@ const EnhancedApp: React.FC = () => {
                   border: '1px solid var(--glass-border)',
                   borderRadius: 2 
                 }}>
-                  <AsymmetricFriendsSection />
+                  <OptimizedFriendsSection />
                 </Box>
               </Box>
               

@@ -18,14 +18,17 @@
   --color-surface: #1a1a2e;
   --color-text-primary: #ffffff;
   --color-text-secondary: #b8b8b8;
+  --color-success: #00ff88;
+  --color-success-dark: #00cc6a;
+  --color-error: #f44336;
   
-  /* Asymmetric Layout System */
-  --grid-base: 8px;
+  /* Asymmetric Layout System - Optimized for content density */
+  --grid-base: 8px; /* Standard 8px grid for better alignment */
   --grid-column-base: 60px;
-  --grid-column-gap: 24px;
-  --grid-margin-mobile: 4px; /* Reduced from 16px to 4px for ~10mm on 16" screen */
-  --grid-margin-tablet: 8px; /* Reduced from 32px to 8px */
-  --grid-margin-desktop: 16px; /* Reduced from 64px to 16px */
+  --grid-column-gap: 16px; /* Reduced for better density */
+  --grid-margin-mobile: 16px; /* Optimal mobile margins */
+  --grid-margin-tablet: 24px; /* Balanced tablet spacing */
+  --grid-margin-desktop: 32px; /* Desktop spacing for readability */
   
   /* Mobile-specific spacing */
   --mobile-card-gap: calc(var(--grid-base) * 2);
