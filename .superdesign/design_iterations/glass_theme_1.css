@@ -1,0 +1,16 @@
+:root {
+  --background: oklch(100% 0 0);
+  --foreground: oklch(15% 0 0);
+  --card: oklch(95% 0.02 270 / 0.4);
+  --card-foreground: oklch(98% 0 0);
+  --primary: oklch(72% 0.18 260);
+  --primary-foreground: oklch(98% 0 0);
+  --border: oklch(90% 0.01 260 / 0.3);
+  --input: oklch(90% 0.01 260 / 0.2);
+  --ring: oklch(75% 0.15 260 / 0.3);
+  --radius: 1.2rem;
+  --shadow-sm: 0 4px 6px -1px oklch(0% 0 0 / 0.1);
+  --glass-backdrop: blur(16px) saturate(180%);
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --transition-nav: 220ms cubic-bezier(0.33, 1, 0.68, 1);
+}

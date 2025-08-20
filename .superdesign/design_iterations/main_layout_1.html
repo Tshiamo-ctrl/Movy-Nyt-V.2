@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovyNyt - Production Ready</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="glass_theme_1.css">
+  <style>
+    /* Cinema effects */
+    .projector-light {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        oklch(80% 0.3 260 / 0.1),
+        oklch(90% 0.25 260 / 0.3)
+      );
+      animation: projectorScan 4s linear infinite;
+    }
+
+    .film-strip {
+      @apply relative bg-black p-8 rounded-lg;
+      border: 3px solid var(--foreground);
+    }
+
+    .film-perfs {
+      @apply absolute top-0 left-0 right-0 flex justify-between;
+      height: 20px;
+    }
+
+    .perf {
+      @apply w-4 h-full bg-[var(--foreground)];
+      clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
+    }
+
+    .countdown-number {
+      @apply text-9xl font-bold text-[var(--primary)];
+      text-shadow: 0 0 20px oklch(70% 0.3 260 / 0.5);
+    }
+
+    @keyframes projectorScan {
+      0% { transform: translateX(-100%) skew(-15deg); }
+      100% { transform: translateX(100%) skew(-15deg); }
+    }
+
+    .nav-glass {
+      background: oklch(95% 0.02 270 / 0.4);
+      backdrop-filter: var(--glass-backdrop);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .loading-screen {
+      @apply fixed inset-0 z-50 flex items-center justify-center;
+      background: oklch(100% 0 0 / 0.9);
+      backdrop-filter: blur(12px);
+    }
+
+    .friend-card {
+      background: var(--card);
+      backdrop-filter: var(--glass-backdrop);
+      border: 1px solid var(--border);
+      transition: transform 0.2s var(--transition-nav);
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] font-[var(--font-sans)]">
+  <!-- Loading Screen -->
+  <div id="loader" class="loading-screen">
+    <div class="projector-light"></div>
+    <div class="film-strip">
+      <div class="countdown-number">5</div>
+      <div class="film-perfs">
+        <div class="perf" v-for="n in 24" :key="n"></div>
+      </div>
+    </div>
+    <audio id="countdownAudio" src="https://assets.mixkit.co/active_storage/sfx/2997/2997-preview.mp3"></audio>
+    <audio id="filmAudio" src="https://assets.mixkit.co/active_storage/sfx/2999/2999-preview.mp3"></audio>
+  </div>
+
+  <!-- Glass Navbar -->
+  <nav class="nav-glass fixed w-full z-40 py-4 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-8">
+        <span class="text-2xl font-bold text-[var(--primary)]">MovyNyt</span>
+        <div class="hidden md:flex gap-6">
+          <a href="#" class="text-[var(--foreground)] hover:text-[var(--primary)] transition-[var(--transition-nav)]">Home</a>
+          <a href="#" class="text-[var(--foreground)] hover:text-[var(--primary)] transition-[var(--transition-nav)]">Friends</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-12 px-6 min-h-screen">
+    <div class="max-w-7xl mx-auto grid gap-8 md:grid-cols-3">
+      <!-- Friend Card -->
+      <article class="friend-card rounded-[var(--radius)] p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="aspect-square mb-4 rounded-xl bg-gray-100 overflow-hidden">
+          <img data-src="https://placehold.co/600x400" alt="Friend" class="w-full h-full object-cover animate-fade-in">
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-[var(--card-foreground)]">Featured Friend</h3>
+        <p class="text-[var(--card-foreground)] opacity-80">Movie night curator specializing in 90s classics</p>
+      </article>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+<script>
+    // Cinema-style countdown
+    const countdownSound = new Howl({
+      src: ['https://assets.mixkit.co/active_storage/sfx/2997/2997-preview.mp3'],
+      volume: 0.3
+    });
+
+    const filmSound = new Howl({
+      src: ['https://assets.mixkit.co/active_storage/sfx/2999/2999-preview.mp3'],
+      volume: 0.2,
+      loop: true
+    });
+
+    // Enhanced loader interactions
+    let lastScroll = 0;
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('load', () => {
+      filmSound.play();
+      let count = 5;
+      const countdownElement = document.querySelector('.countdown-number');
+      const updateCountdown = () => {
+        countdownElement.textContent = count;
+        countdownSound.play();
+        if(count === 0) {
+          filmSound.stop();
+          document.getElementById('loader').style.display = 'none';
+          return;
+        }
+        count--;
+        setTimeout(updateCountdown, 1200);
+      };
+      updateCountdown();
+      
+      // Scroll-aware navbar
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        nav.style.background = currentScroll > 50 
+          ? oklch(95% 0.02 270 / 0.8)
+          : oklch(95% 0.02 270 / 0.4);
+        lastScroll = currentScroll;
+      });
+
+      // Lazy-load images
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll('img').forEach(img => {
+        if (!img.src) {
+          img.dataset.src = img.alt;
+          observer.observe(img);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
