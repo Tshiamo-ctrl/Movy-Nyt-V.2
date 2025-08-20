@@ -10,7 +10,7 @@ import GlowButton from '../ui/GlowButton';
 const FooterContainer = styled(Box)(() => ({
   background: 'var(--glass-background-subtle)',
   backdropFilter: 'var(--glass-blur-subtle)',
-  padding: '80px 20px 40px',
+  padding: '40px 20px 20px', // Reduced from 80px 20px 40px
   borderTop: 'var(--glass-border)',
   position: 'relative',
   
@@ -33,9 +33,9 @@ const NewsletterSection = styled(Box)({
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border-strong)',
   borderRadius: '16px',
-  padding: '40px',
+  padding: '24px', // Reduced from 40px
   textAlign: 'center',
-  marginBottom: '60px',
+  marginBottom: '30px', // Reduced from 60px
   position: 'relative',
   overflow: 'hidden',
   boxShadow: 'var(--glass-shadow)',

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { TrendingUp, Group, Star, PlayArrow } from '@mui/icons-material';
 import AsymmetricHeroSection from '../components/layout/AsymmetricHeroSection';
 import AsymmetricFeaturesSection from '../components/layout/AsymmetricFeaturesSection';
 import FooterSection from '../components/layout/FooterSection';
@@ -16,16 +17,89 @@ const SmoothScrollContainer = styled(Box)(() => ({
 const SectionDivider = styled(Box)(() => ({
   height: '1px',
   background: 'linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%)',
-  margin: 'calc(var(--grid-base) * 8) auto',
+  margin: 'calc(var(--grid-base) * 4) auto', // Reduced from 8 to 4
   maxWidth: '400px',
   opacity: 0.3,
 }));
 
 const PageContainer = styled(Box)(() => ({
-  paddingTop: 'calc(64px + var(--grid-base) * 2)', // Header height + spacing
+  paddingTop: 'calc(64px + var(--grid-base) * 1)', // Reduced from 2 to 1
   
   '@media (max-width: var(--breakpoint-sm))': {
-    paddingTop: 'calc(56px + var(--grid-base) * 1)', // Smaller header spacing on mobile
+    paddingTop: 'calc(56px + var(--grid-base) * 0.5)', // Reduced from 1 to 0.5
+  },
+}));
+
+// New content section to fill negative space
+const QuickStatsSection = styled(Box)(() => ({
+  background: 'var(--glass-background-subtle)',
+  backdropFilter: 'var(--glass-blur-subtle)',
+  border: 'var(--glass-border)',
+  borderRadius: 'calc(var(--grid-base) * 2)',
+  padding: 'calc(var(--grid-base) * 3)',
+  margin: 'calc(var(--grid-base) * 2) auto',
+  maxWidth: '1200px',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+  gap: 'calc(var(--grid-base) * 2)',
+  alignItems: 'center',
+  
+  '@media (max-width: var(--breakpoint-sm))': {
+    gridTemplateColumns: '1fr',
+    gap: 'calc(var(--grid-base) * 1.5)',
+  },
+}));
+
+const StatItem = styled(Box)(() => ({
+  textAlign: 'center',
+  padding: 'calc(var(--grid-base) * 1.5)',
+  background: 'var(--glass-background)',
+  borderRadius: 'calc(var(--grid-base) * 1.5)',
+  border: 'var(--glass-border)',
+  transition: 'all var(--animation-medium) var(--ease-out-expo)',
+  
+  '&:hover': {
+    transform: 'translateY(-4px)',
+    boxShadow: 'var(--glass-hover-shadow)',
+    border: 'var(--glass-hover-border)',
+  },
+}));
+
+const ContentPreviewSection = styled(Box)(() => ({
+  background: 'var(--color-surface)',
+  padding: 'calc(var(--grid-base) * 4) 0',
+  margin: 'calc(var(--grid-base) * 2) 0',
+}));
+
+const ContentPreviewGrid = styled(Box)(() => ({
+  maxWidth: '1200px',
+  margin: '0 auto',
+  padding: '0 var(--grid-margin-mobile)',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: 'calc(var(--grid-base) * 2)',
+  
+  '@media (min-width: var(--breakpoint-sm))': {
+    padding: '0 var(--grid-margin-tablet)',
+  },
+  '@media (min-width: var(--breakpoint-lg))': {
+    padding: '0 var(--grid-margin-desktop)',
+  },
+}));
+
+const PreviewCard = styled(Box)(() => ({
+  background: 'var(--glass-background)',
+  backdropFilter: 'var(--glass-blur)',
+  border: 'var(--glass-border)',
+  borderRadius: 'calc(var(--grid-base) * 2)',
+  padding: 'calc(var(--grid-base) * 2.5)',
+  transition: 'all var(--animation-medium) var(--ease-out-expo)',
+  cursor: 'pointer',
+  
+  '&:hover': {
+    transform: 'translateY(-6px)',
+    boxShadow: 'var(--glass-hover-shadow)',
+    border: 'var(--glass-hover-border)',
   },
 }));
 
@@ -70,6 +144,137 @@ const HomePage: React.FC = () => {
       <SmoothScrollContainer>
         {/* Main Hero Section with Asymmetric Design */}
         <AsymmetricHeroSection />
+        
+        {/* Quick Stats Section - fills negative space */}
+        <QuickStatsSection>
+          <StatItem>
+            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
+              1,247
+            </Typography>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              Active Users
+            </Typography>
+          </StatItem>
+          
+          <StatItem>
+            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
+              89
+            </Typography>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              Live Parties
+            </Typography>
+          </StatItem>
+          
+          <StatItem>
+            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
+              15,623
+            </Typography>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              Movies Watched
+            </Typography>
+          </StatItem>
+          
+          <StatItem>
+            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1}>
+              <Star sx={{ color: 'warning.main' }} />
+              <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700 }}>
+                4.8
+              </Typography>
+            </Stack>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              User Rating
+            </Typography>
+          </StatItem>
+        </QuickStatsSection>
+        
+        {/* Content Preview Section - fills more negative space */}
+        <ContentPreviewSection>
+          <Box sx={{ textAlign: 'center', mb: 'calc(var(--grid-base) * 3)' }}>
+            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
+              <TrendingUp sx={{ color: 'primary.main' }} />
+              <Typography variant="h3" sx={{ color: 'white', fontWeight: 700 }}>
+                What&apos;s Hot Right Now
+              </Typography>
+            </Stack>
+            <Typography variant="body1" sx={{ color: 'text.secondary', fontSize: '1.125rem' }}>
+              Join the conversation around trending content
+            </Typography>
+          </Box>
+          
+          <ContentPreviewGrid>
+            <PreviewCard>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Box sx={{ 
+                  width: 60, 
+                  height: 60, 
+                  borderRadius: '50%', 
+                  background: 'var(--gradient-brand)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <PlayArrow sx={{ color: 'white', fontSize: '1.5rem' }} />
+                </Box>
+                <Box>
+                  <Typography variant="h6" sx={{ color: 'white', fontWeight: 600, mb: 0.5 }}>
+                    Cosmic Odyssey
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Epic space adventure with friends
+                  </Typography>
+                </Box>
+              </Stack>
+            </PreviewCard>
+            
+            <PreviewCard>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Box sx={{ 
+                  width: 60, 
+                  height: 60, 
+                  borderRadius: '50%', 
+                  background: 'var(--gradient-brand)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <Group sx={{ color: 'white', fontSize: '1.5rem' }} />
+                </Box>
+                <Box>
+                  <Typography variant="h6" sx={{ color: 'white', fontWeight: 600, mb: 0.5 }}>
+                    Watch Together
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Synchronized streaming experience
+                  </Typography>
+                </Box>
+              </Stack>
+            </PreviewCard>
+            
+            <PreviewCard>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Box sx={{ 
+                  width: 60, 
+                  height: 60, 
+                  borderRadius: '50%', 
+                  background: 'var(--gradient-brand)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <TrendingUp sx={{ color: 'white', fontSize: '1.5rem' }} />
+                </Box>
+                <Box>
+                  <Typography variant="h6" sx={{ color: 'white', fontWeight: 600, mb: 0.5 }}>
+                    Trending Now
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Discover what&apos;s popular
+                  </Typography>
+                </Box>
+              </Stack>
+            </PreviewCard>
+          </ContentPreviewGrid>
+        </ContentPreviewSection>
         
         {/* Subtle divider */}
         <SectionDivider />

@@ -37,8 +37,8 @@ const FeaturesContainer = styled(Box)(() => ({
   position: 'relative',
   background: `linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 50%, var(--color-background) 100%)`,
   overflow: 'hidden',
-  paddingTop: 'calc(var(--grid-base) * 15)',
-  paddingBottom: 'calc(var(--grid-base) * 15)',
+  paddingTop: 'calc(var(--grid-base) * 8)', // Reduced from 15 to 8
+  paddingBottom: 'calc(var(--grid-base) * 8)', // Reduced from 15 to 8
 }));
 
 const AsymmetricLayout = styled(Box)(() => ({
@@ -47,7 +47,7 @@ const AsymmetricLayout = styled(Box)(() => ({
   padding: 'var(--grid-margin-mobile)',
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gap: 'calc(var(--grid-base) * 4)',
+  gap: 'calc(var(--grid-base) * 2.5)', // Reduced from 4 to 2.5
   alignItems: 'start',
   
   '@media (min-width: var(--breakpoint-sm))': {
@@ -60,7 +60,7 @@ const AsymmetricLayout = styled(Box)(() => ({
 
 const HeaderSection = styled(Box)(() => ({
   gridColumn: '1 / span 8',
-  marginBottom: 'calc(var(--grid-base) * 6)',
+  marginBottom: 'calc(var(--grid-base) * 3)', // Reduced from 6 to 3
   animation: `${slideInFromBottom} 1s var(--ease-out-expo)`,
   
   '@media (max-width: var(--breakpoint-md))': {
@@ -75,7 +75,7 @@ const FeatureCard = styled(Box, {
   backdropFilter: 'var(--glass-blur)',
   border: featured ? 'var(--glass-border-strong)' : 'var(--glass-border)',
   borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 4)',
+  padding: 'calc(var(--grid-base) * 3)', // Reduced from 4 to 3
   position: 'relative',
   overflow: 'hidden',
   transition: `all var(--animation-medium) var(--ease-out-expo)`,
@@ -116,7 +116,7 @@ const IconWrapper = styled(Box, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: 'calc(var(--grid-base) * 3)',
+  marginBottom: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
   boxShadow: 'var(--glass-shadow)',
   position: 'relative',
   zIndex: 2,
@@ -139,7 +139,7 @@ const StatsWidget = styled(Box)(() => ({
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
   borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 3)',
+  padding: 'calc(var(--grid-base) * 2.5)', // Reduced from 3 to 2.5
   animation: `${rotateIn} 1s var(--ease-out-expo) 0.5s both`,
   
   '@media (max-width: var(--breakpoint-md))': {
@@ -150,7 +150,7 @@ const StatsWidget = styled(Box)(() => ({
 
 const TrendingSection = styled(Box)(() => ({
   gridColumn: 'span 12',
-  marginTop: 'calc(var(--grid-base) * 8)',
+  marginTop: 'calc(var(--grid-base) * 4)', // Reduced from 8 to 4
 }));
 
 const ShimmerText = styled(Typography)(() => ({

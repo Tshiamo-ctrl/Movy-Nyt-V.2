@@ -34,7 +34,7 @@ const pulseGlow = keyframes`
 
 // Styled components
 const HeroContainer = styled(Box)(() => ({
-  minHeight: '100vh',
+  minHeight: '70vh', // Reduced from 100vh to eliminate excessive vertical space
   position: 'relative',
   overflow: 'hidden',
   background: 'var(--gradient-overlay-dark)',
@@ -63,24 +63,24 @@ const AsymmetricGrid = styled(Box)(() => ({
   padding: 'var(--grid-margin-mobile)',
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gridTemplateRows: 'repeat(8, minmax(80px, 1fr))',
-  gap: 'calc(var(--grid-base) * 3)',
-  minHeight: '100vh',
+  gridTemplateRows: 'repeat(6, minmax(60px, 1fr))', // Reduced from 8 rows to 6
+  gap: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2 to eliminate large gaps
+  minHeight: '70vh', // Reduced from 100vh
   alignContent: 'center',
   
   '@media (min-width: var(--breakpoint-sm))': {
     padding: 'var(--grid-margin-tablet)',
-    gap: 'calc(var(--grid-base) * 4)',
+    gap: 'calc(var(--grid-base) * 2.5)', // Reduced from 4 to 2.5
   },
   '@media (min-width: var(--breakpoint-lg))': {
     padding: 'var(--grid-margin-desktop)',
-    gap: 'calc(var(--grid-base) * 5)',
+    gap: 'calc(var(--grid-base) * 3)', // Reduced from 5 to 3
   },
 }));
 
 const MainHeroCard = styled(Box)(() => ({
   gridColumn: 'span 7',
-  gridRow: 'span 5',
+  gridRow: 'span 4', // Reduced from 5 to 4
   position: 'relative',
   borderRadius: 'calc(var(--grid-base) * 3)',
   background: 'var(--glass-background-strong)',
@@ -91,7 +91,7 @@ const MainHeroCard = styled(Box)(() => ({
   
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
-    gridRow: 'span 4',
+    gridRow: 'span 3', // Reduced from 4 to 3
   },
   
   '&::before': {
@@ -116,7 +116,7 @@ const HeroContent = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  padding: 'calc(var(--grid-base) * 4)',
+  padding: 'calc(var(--grid-base) * 3)', // Reduced from 4 to 3
   background: 'var(--gradient-overlay-dark)',
 }));
 
@@ -138,7 +138,7 @@ const SocialProofWidget = styled(Box)(() => ({
   backdropFilter: 'var(--glass-blur)',
   border: 'var(--glass-border)',
   borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 3)',
+  padding: 'calc(var(--grid-base) * 2.5)', // Reduced from 3 to 2.5
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -152,10 +152,10 @@ const SocialProofWidget = styled(Box)(() => ({
 
 const TrendingGrid = styled(Box)(() => ({
   gridColumn: 'span 5',
-  gridRow: 'span 3',
+  gridRow: 'span 2', // Reduced from 3 to 2
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: 'calc(var(--grid-base) * 2)',
+  gap: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
   
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
@@ -174,7 +174,7 @@ const CallToActionCard = styled(Box)(() => ({
   backdropFilter: 'var(--glass-blur-subtle)',
   border: 'var(--glass-border)',
   borderRadius: 'calc(var(--grid-base) * 2)',
-  padding: 'calc(var(--grid-base) * 2)',
+  padding: 'calc(var(--grid-base) * 2)', // Reduced from 2 to 2 (already minimal)
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -183,7 +183,7 @@ const CallToActionCard = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-md))': {
     gridColumn: 'span 12',
     flexDirection: 'column',
-    gap: 'calc(var(--grid-base) * 2)',
+    gap: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
   },
 }));
 
