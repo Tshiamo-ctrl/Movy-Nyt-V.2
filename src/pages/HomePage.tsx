@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Box, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { TrendingUp, Group, Star, PlayArrow } from '@mui/icons-material';
+import { TrendingUp, Group, PlayArrow } from '@mui/icons-material';
 import AsymmetricHeroSection from '../components/layout/AsymmetricHeroSection';
 import AsymmetricFeaturesSection from '../components/layout/AsymmetricFeaturesSection';
 import FooterSection from '../components/layout/FooterSection';
@@ -31,45 +31,11 @@ const PageContainer = styled(Box)(() => ({
 }));
 
 // New content section to fill negative space
-const QuickStatsSection = styled(Box)(() => ({
-  background: 'var(--glass-background-subtle)',
-  backdropFilter: 'var(--glass-blur-subtle)',
-  border: 'var(--glass-border)',
-  borderRadius: 'calc(var(--grid-base) * 1.5)', // Reduced from 2 to 1.5
-  padding: 'calc(var(--grid-base) * 2)', // Reduced from 3 to 2
-  margin: '8px auto', // Reduced from 10px to 8px for better density
-  maxWidth: '1200px',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', // Reduced from 200px to 180px
-  gap: '16px', // Reduced from calc(var(--grid-base) * 2) to 16px
-  alignItems: 'center',
-  
-  '@media (max-width: var(--breakpoint-sm))': {
-    gridTemplateColumns: '1fr',
-    gap: '12px', // Reduced from calc(var(--grid-base) * 1.5) to 12px
-    margin: '6px auto', // Reduced from 8px to 6px
-  },
-}));
-
-const StatItem = styled(Box)(() => ({
-  textAlign: 'center',
-  padding: 'calc(var(--grid-base) * 1)', // Reduced from 1.5 to 1
-  background: 'var(--glass-background)',
-  borderRadius: 'calc(var(--grid-base) * 1)', // Reduced from 1.5 to 1
-  border: 'var(--glass-border)',
-  transition: 'all var(--animation-medium) var(--ease-out-expo)',
-  
-  '&:hover': {
-    transform: 'translateY(-2px)', // Reduced from -4px to -2px
-    boxShadow: 'var(--glass-hover-shadow)',
-    border: 'var(--glass-hover-border)',
-  },
-}));
 
 const ContentPreviewSection = styled(Box)(() => ({
   background: 'var(--color-surface)',
-  padding: '16px 0', // Reduced from 20px to 16px
-  margin: '16px 0', // Reduced from 20px to 16px
+  padding: '8px 0', // Reduced from 16px to 8px to eliminate negative space
+  margin: '4px 0', // Reduced from 16px to 4px to eliminate negative space
 }));
 
 const ContentPreviewGrid = styled(Box)(() => ({
@@ -146,52 +112,10 @@ const HomePage: React.FC = () => {
         {/* Main Hero Section with Asymmetric Design */}
         <AsymmetricHeroSection />
         
-        {/* Quick Stats Section - fills negative space */}
-        <QuickStatsSection>
-          <StatItem>
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              1,247
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Active Users
-            </Typography>
-          </StatItem>
-          
-          <StatItem>
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              89
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Live Parties
-            </Typography>
-          </StatItem>
-          
-          <StatItem>
-            <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-              15,623
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Movies Watched
-            </Typography>
-          </StatItem>
-          
-          <StatItem>
-            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1}>
-              <Star sx={{ color: 'warning.main' }} />
-              <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700 }}>
-                4.8
-              </Typography>
-            </Stack>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              User Rating
-            </Typography>
-          </StatItem>
-        </QuickStatsSection>
-        
         {/* Content Preview Section - fills more negative space */}
         <ContentPreviewSection>
-          <Box sx={{ textAlign: 'center', mb: '16px' }}> {/* Reduced from 24px to 16px */}
-            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 1.5 }}> {/* Reduced from 2 to 1.5 */}
+          <Box sx={{ textAlign: 'center', mb: '8px' }}> {/* Reduced from 16px to 8px to eliminate negative space */}
+            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 1 }}> {/* Reduced from 1.5 to 1 */}
               <TrendingUp sx={{ color: 'primary.main' }} />
               <Typography variant="h3" sx={{ color: 'white', fontWeight: 700 }}>
                 What&apos;s Hot Right Now
