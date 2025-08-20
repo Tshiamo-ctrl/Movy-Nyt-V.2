@@ -25,17 +25,17 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import GlowButton from '../ui/GlowButton';
 
 const StyledAppBar = styled(AppBar)({
-  background: 'var(--glass-background)',
-  backdropFilter: 'var(--glass-blur)',
-  borderBottom: 'var(--glass-border)',
-  boxShadow: 'var(--glass-shadow)',
+  background: 'rgba(26, 26, 46, 0.2)', // More transparent
+  backdropFilter: 'blur(20px)',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
   transition: 'all var(--animation-medium) var(--ease-out-expo)',
   
   '&:hover': {
-    background: 'var(--glass-background-strong)',
-    backdropFilter: 'var(--glass-blur-strong)',
-    borderBottom: 'var(--glass-border-strong)',
-    boxShadow: 'var(--glass-hover-shadow)',
+    background: 'rgba(26, 26, 46, 0.3)',
+    backdropFilter: 'blur(25px)',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
+    boxShadow: '0 6px 25px rgba(0, 0, 0, 0.15)',
   },
   
   // Add subtle gradient overlay
@@ -46,8 +46,8 @@ const StyledAppBar = styled(AppBar)({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'var(--gradient-overlay-light)',
-    opacity: 0.3,
+    background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(65, 105, 225, 0.05) 100%)',
+    opacity: 0.5,
     pointerEvents: 'none',
   },
 });
@@ -66,13 +66,14 @@ const LogoText = styled(Typography)(({ theme }) => ({
 }));
 
 const NavButton = styled(Typography)<{ active?: boolean }>(({ theme, active }) => ({
-  padding: '8px 16px',
-  borderRadius: '8px',
+  padding: '6px 12px', // Reduced padding
+  borderRadius: '6px', // Smaller radius
   cursor: 'pointer',
   transition: 'all 0.3s ease-in-out',
   color: active ? theme.palette.primary.main : theme.palette.text.secondary,
   backgroundColor: active ? 'rgba(0, 255, 255, 0.1)' : 'transparent',
   border: active ? '1px solid rgba(0, 255, 255, 0.3)' : '1px solid transparent',
+  fontSize: '0.9rem', // Smaller font size
   '&:hover': {
     color: theme.palette.primary.main,
     backgroundColor: 'rgba(0, 255, 255, 0.1)',
@@ -190,16 +191,16 @@ const Header: React.FC = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: 'auto' }}>
             {!isMobile && (
               <>
-                <IconButton color="inherit">
+                <IconButton color="inherit" size="small">
                   <Badge badgeContent={3} color="error">
-                    <NotificationsIcon />
+                    <NotificationsIcon sx={{ fontSize: '1.2rem' }} />
                   </Badge>
                 </IconButton>
                 
-                <IconButton onClick={handleUserMenuOpen} color="inherit">
+                <IconButton onClick={handleUserMenuOpen} color="inherit" size="small">
                   <Avatar 
                     src="https://i.pravatar.cc/150?img=1" 
-                    sx={{ width: 32, height: 32 }}
+                    sx={{ width: 28, height: 28 }} // Smaller avatar
                   />
                 </IconButton>
                 
@@ -207,6 +208,12 @@ const Header: React.FC = () => {
                   variant="outline" 
                   size="small"
                   onClick={() => handleNavigate('/auth')}
+                  sx={{
+                    padding: '4px 12px', // Smaller padding
+                    fontSize: '0.8rem', // Smaller font
+                    minWidth: 'auto',
+                    height: '32px', // Fixed height
+                  }}
                 >
                   Sign In
                 </GlowButton>
@@ -229,10 +236,10 @@ const Header: React.FC = () => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: 240,
-            background: 'var(--glass-background-strong)',
-            backdropFilter: 'var(--glass-blur-strong)',
-            border: 'var(--glass-border-strong)',
-            boxShadow: 'var(--glass-shadow)',
+            background: 'rgba(26, 26, 46, 0.95)', // More transparent
+            backdropFilter: 'blur(30px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
           }
         }}
       >
@@ -246,10 +253,10 @@ const Header: React.FC = () => {
         onClose={handleUserMenuClose}
         sx={{
           '& .MuiPaper-root': {
-            background: 'var(--glass-background-strong)',
-            backdropFilter: 'var(--glass-blur-strong)',
-            border: 'var(--glass-border-strong)',
-            boxShadow: 'var(--glass-shadow)',
+            background: 'rgba(26, 26, 46, 0.95)', // More transparent
+            backdropFilter: 'blur(30px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
             mt: 1,
             borderRadius: '12px',
           }

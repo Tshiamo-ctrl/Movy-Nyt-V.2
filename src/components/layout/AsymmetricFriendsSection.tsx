@@ -84,13 +84,13 @@ const heartBeat = keyframes`
 const FriendsContainer = styled(Box)(() => ({
   minHeight: '100vh',
   background: 'linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 30%, var(--color-background) 70%)',
-  padding: 'calc(var(--grid-base) * 4) var(--grid-margin-mobile)',
+  padding: '32px var(--grid-margin-mobile)', // Reduced from 4 to 32px (max 50px)
   
   '@media (min-width: var(--breakpoint-sm))': {
-    padding: 'calc(var(--grid-base) * 6) var(--grid-margin-tablet)',
+    padding: '40px var(--grid-margin-tablet)', // Reduced from 6 to 40px (max 50px)
   },
   '@media (min-width: var(--breakpoint-lg))': {
-    padding: 'calc(var(--grid-base) * 8) var(--grid-margin-desktop)',
+    padding: '48px var(--grid-margin-desktop)', // Reduced from 8 to 48px (max 50px)
   },
 }));
 
@@ -98,7 +98,7 @@ const AsymmetricGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
   gridTemplateRows: 'auto auto auto auto',
-  gap: 'calc(var(--grid-base) * 3)',
+  gap: '24px', // Reduced from 3 to 24px (max 50px)
   maxWidth: '1600px',
   margin: '0 auto',
   gridTemplateAreas: `
@@ -138,7 +138,7 @@ const AsymmetricGrid = styled(Box)(() => ({
       "requests"
       "activity"
     `,
-    gap: 'calc(var(--grid-base) * 2)',
+    gap: '20px', // Reduced from 2 to 20px (max 50px)
   },
 }));
 
@@ -205,16 +205,16 @@ const ConnectionsArea = styled(Box)(() => ({
 const FriendConnectionsGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-  gap: 'calc(var(--grid-base) * 3)',
+  gap: '24px', // Reduced from 3 to 24px (max 50px)
   
   '@media (max-width: var(--breakpoint-lg))': {
     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: 'calc(var(--grid-base) * 2.5)',
+    gap: '20px', // Reduced from 2.5 to 20px (max 50px)
   },
   
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
-    gap: 'calc(var(--grid-base) * 2)',
+    gap: '16px', // Reduced from 2 to 16px (max 50px)
   },
 }));
 
@@ -222,7 +222,6 @@ const FriendConnectionsGrid = styled(Box)(() => ({
 const FriendCard = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'priority' && prop !== 'isOnline'
 })<{ priority?: number; isOnline?: boolean }>(({ priority = 5, isOnline }) => {
-  const priorityScale = priority >= 8 ? 'var(--priority-scale-8)' : priority >= 6 ? 'var(--priority-scale-6)' : 'var(--priority-scale-5)';
   const cardHeight = priority >= 8 ? '300px' : priority >= 6 ? '250px' : '200px';
   
   return {
@@ -247,15 +246,15 @@ const FriendCard = styled(Box, {
       marginBottom: 'calc(var(--grid-base) * 1.5)',
     },
     
-    // Tablet sizing
+    // Tablet sizing - remove transform scaling to prevent overlap
     '@media (min-width: var(--breakpoint-sm)) and (max-width: var(--breakpoint-lg))': {
-      transform: `scale(${priorityScale})`,
+      transform: 'none', // Remove scaling to prevent overlap
       transformOrigin: 'center top',
     },
     
-    // Desktop sizing
+    // Desktop sizing - remove transform scaling to prevent overlap
     '@media (min-width: var(--breakpoint-lg))': {
-      transform: `scale(${priorityScale})`,
+      transform: 'none', // Remove scaling to prevent overlap
       transformOrigin: 'center top',
     },
     
@@ -273,7 +272,7 @@ const FriendCard = styled(Box, {
     },
     
     '&:hover': {
-      transform: `scale(calc(${priorityScale} * 1.02)) translateY(-4px)`,
+      transform: 'translateY(-4px)', // Simplified hover effect
       boxShadow: 'var(--glass-hover-shadow)',
       border: 'var(--glass-hover-border)',
       '&::before': {

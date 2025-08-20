@@ -23,10 +23,10 @@ const SectionDivider = styled(Box)(() => ({
 }));
 
 const PageContainer = styled(Box)(() => ({
-  paddingTop: 'calc(64px + var(--grid-base) * 1)', // Reduced from 2 to 1
+  paddingTop: 'calc(64px + 32px)', // Header height + 32px (max 100px total)
   
   '@media (max-width: var(--breakpoint-sm))': {
-    paddingTop: 'calc(56px + var(--grid-base) * 0.5)', // Reduced from 1 to 0.5
+    paddingTop: 'calc(56px + 24px)', // Smaller header spacing on mobile
   },
 }));
 
@@ -37,7 +37,7 @@ const QuickStatsSection = styled(Box)(() => ({
   border: 'var(--glass-border)',
   borderRadius: 'calc(var(--grid-base) * 2)',
   padding: 'calc(var(--grid-base) * 3)',
-  margin: 'calc(var(--grid-base) * 2) auto',
+  margin: '32px auto', // Reduced from 2 to 32px (max 50px)
   maxWidth: '1200px',
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -47,6 +47,7 @@ const QuickStatsSection = styled(Box)(() => ({
   '@media (max-width: var(--breakpoint-sm))': {
     gridTemplateColumns: '1fr',
     gap: 'calc(var(--grid-base) * 1.5)',
+    margin: '24px auto', // Smaller margin on mobile
   },
 }));
 
@@ -67,8 +68,8 @@ const StatItem = styled(Box)(() => ({
 
 const ContentPreviewSection = styled(Box)(() => ({
   background: 'var(--color-surface)',
-  padding: 'calc(var(--grid-base) * 4) 0',
-  margin: 'calc(var(--grid-base) * 2) 0',
+  padding: '32px 0', // Reduced from 4 to 32px (max 50px)
+  margin: '32px 0', // Reduced from 2 to 32px (max 50px)
 }));
 
 const ContentPreviewGrid = styled(Box)(() => ({
@@ -189,7 +190,7 @@ const HomePage: React.FC = () => {
         
         {/* Content Preview Section - fills more negative space */}
         <ContentPreviewSection>
-          <Box sx={{ textAlign: 'center', mb: 'calc(var(--grid-base) * 3)' }}>
+          <Box sx={{ textAlign: 'center', mb: '24px' }}> {/* Reduced from 3 to 24px */}
             <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
               <TrendingUp sx={{ color: 'primary.main' }} />
               <Typography variant="h3" sx={{ color: 'white', fontWeight: 700 }}>
